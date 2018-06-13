@@ -1,4 +1,4 @@
-package ar.edu.ub.testing.guerros.data;
+package ar.edu.ub.testing.guerros.modelo;
 
 public class Atributos {
 	

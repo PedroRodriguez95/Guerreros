@@ -1,4 +1,4 @@
-package ar.edu.ub.testing.guerreros.vision;
+package ar.edu.ub.testing.guerreros.vista;
 
 import java.awt.CardLayout;
 import java.awt.Color;

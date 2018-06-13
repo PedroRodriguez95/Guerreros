@@ -1,4 +1,4 @@
-package ar.edu.ub.testing.guerros.data;
+package ar.edu.ub.testing.guerros.modelo;
 
 public enum Cruzador {
 	CRUZA_1 {    // TOMA ATRIBUTOS OFENSIVOS DEL PADRE Y DEFENSIVOS DE LA MADRE

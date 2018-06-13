@@ -1,6 +1,6 @@
-package ar.edu.ub.testing.guerros.data;
+package ar.edu.ub.testing.guerros.modelo;
 
-import ar.edu.ub.testing.guerreros.funciones.FuncionesGuerrero;
+import ar.edu.ub.testing.guerreros.control.FuncionesGuerrero;
 
 public enum Modo_Juego {
 	UN_JUGADOR {

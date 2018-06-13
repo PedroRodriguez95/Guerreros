@@ -1,4 +1,4 @@
-package ar.edu.ub.testing.guerreros.vision;
+package ar.edu.ub.testing.guerreros.vista;
 
 
 import java.awt.Color;
@@ -16,7 +16,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import ar.edu.ub.testing.guerros.data.GuerreroJugador;
+import ar.edu.ub.testing.guerros.modelo.GuerreroJugador;
 
 public class PanelDeCreacionDePersonaje extends JPanel{
 	

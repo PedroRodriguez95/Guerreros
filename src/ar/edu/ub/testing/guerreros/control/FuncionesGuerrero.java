@@ -1,13 +1,13 @@
-package ar.edu.ub.testing.guerreros.funciones;
+package ar.edu.ub.testing.guerreros.control;
 import java.util.Random;
 import java.util.Scanner;
 
-import ar.edu.ub.testing.guerros.data.Mutador;
-import ar.edu.ub.testing.guerros.data.Cruzador;
-import ar.edu.ub.testing.guerros.data.Guerrero;
-import ar.edu.ub.testing.guerros.data.GuerreroEnemigo;
-import ar.edu.ub.testing.guerros.data.GuerreroJugador;
-import ar.edu.ub.testing.guerros.data.EntidadesJuego;
+import ar.edu.ub.testing.guerros.modelo.Cruzador;
+import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
+import ar.edu.ub.testing.guerros.modelo.Guerrero;
+import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
+import ar.edu.ub.testing.guerros.modelo.GuerreroJugador;
+import ar.edu.ub.testing.guerros.modelo.Mutador;
 
 public class FuncionesGuerrero {
 	

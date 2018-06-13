@@ -1,4 +1,4 @@
-package ar.edu.ub.testing.guerreros.funciones;
+package ar.edu.ub.testing.guerreros.control;
 
 
 import java.awt.*;
@@ -12,10 +12,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import ar.edu.ub.testing.guerreros.vision.PanelDeCombate;
-import ar.edu.ub.testing.guerreros.vision.PanelDeCreacionDePersonaje;
-import ar.edu.ub.testing.guerreros.vision.PanelMenuPrincipal;
-import ar.edu.ub.testing.guerros.data.EntidadesJuego;
+import ar.edu.ub.testing.guerreros.vista.PanelDeCombate;
+import ar.edu.ub.testing.guerreros.vista.PanelDeCreacionDePersonaje;
+import ar.edu.ub.testing.guerreros.vista.PanelMenuPrincipal;
+import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 
 public class Juego {
 	EntidadesJuego entidades           ;
