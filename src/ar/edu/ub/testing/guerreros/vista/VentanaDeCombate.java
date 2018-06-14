@@ -1,10 +1,13 @@
 package ar.edu.ub.testing.guerreros.vista;
 
-import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
 
 import ar.edu.ub.testing.guerreros.control.Juego;
 
-public class PanelDeCombate extends JPanel{
+public class VentanaDeCombate extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -15,18 +18,50 @@ public class PanelDeCombate extends JPanel{
 	
 	private Juego juego;
 
-	private static void configurarCampoDeCombate() {
+	
+	public VentanaDeCombate(Juego juego) {
 		
+		setJuego(juego);
+		generarCampoDeCombate();
+		
+	}
+	private  void configurarCampoDeCombate() {
+		
+		
+		setTitle("Guerreros v1.0 - Campo de Batalla");
+		getContentPane().setLayout(new BorderLayout());
+		setSize(1200, 600);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		
+		
+		setLayout( new GridLayout(1,5) );
+		
+		add( getPanelCombateJugadores() );
+		add( getPanelCombateBatalla() );
+		add( getPanelCombateEnemigos() );
+		add( getPanelCombateControles() );
+		
+		setVisible(true);
 		
 	}
 
 
-	public static void generarCampoDeCombate( Juego juego ) {
+	public void generarCampoDeCombate(  ) {
 		
-		//GENERAR TODO LO NECESARIO
 		
+		
+		setPanelCombateBatalla	( new PanelCombateBatalla  () );
+		setPanelCombateEnemigos	( new PanelCombateEnemigos () );
+		setPanelCombateControles( new PanelCombateControles() );
+		setPanelCombateJugadores( new PanelCombateJugadores() );
 		
 		configurarCampoDeCombate();
+		
+		setVisible(true);
+		
 	}
 
 
@@ -78,11 +113,6 @@ public class PanelDeCombate extends JPanel{
 	public void setJuego(Juego juego) {
 		this.juego = juego;
 	}
-
-
-
-
-
 
 }
 

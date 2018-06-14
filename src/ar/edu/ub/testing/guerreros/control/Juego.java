@@ -12,7 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import ar.edu.ub.testing.guerreros.vista.PanelDeCombate;
+import ar.edu.ub.testing.guerreros.vista.VentanaDeCombate;
 import ar.edu.ub.testing.guerreros.vista.PanelDeCreacionDePersonaje;
 import ar.edu.ub.testing.guerreros.vista.PanelMenuPrincipal;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
@@ -22,18 +22,21 @@ public class Juego {
 	JFrame ventana                     = new JFrame();
 	JPanel contenedorDePaneles         = new JPanel();
 	CardLayout controlDePaneles        = new CardLayout();
-	JPanel panelDeCombate              = new PanelDeCombate();
+	JFrame panelDeCombate              = new VentanaDeCombate(this);
 	JPanel panelDeCreacionDePersonaje  = new PanelDeCreacionDePersonaje();
 	JPanel panelMenuPrincipal          = new PanelMenuPrincipal(contenedorDePaneles,controlDePaneles);
 
 	public Juego() {
+		
 		configurarBarra();
 		configurarVentana();
+		
 	}
 	
 	public void configurarVentana() {
 		contenedorDePaneles.setLayout(controlDePaneles);
-		contenedorDePaneles.add(panelDeCombate, "1");
+		//LO PONGO EN COMENTARIO PORQUE LO TRANSFORME A VENTANA , YA  QUE DEBE SER UNA VENTANA. :D
+		//contenedorDePaneles.add(panelDeCombate, "1");
 		contenedorDePaneles.add(panelDeCreacionDePersonaje, "2");
 		contenedorDePaneles.add(panelMenuPrincipal, "3");
 		controlDePaneles.show(contenedorDePaneles, "3");
