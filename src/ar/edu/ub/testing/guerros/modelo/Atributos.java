@@ -56,6 +56,10 @@ public class Atributos {
 	public int getEnergia() {
 		return energia;
 	}
+	
+	public int getVidaAux() {
+		return this.vidaAux;
+	}
 	public void setEnergia(int energia) {
 		this.energia = energia;
 	}
@@ -63,4 +67,6 @@ public class Atributos {
 	public void resetVida() {
 		this.vida = this.vidaAux;
 	}
+	
+
 }

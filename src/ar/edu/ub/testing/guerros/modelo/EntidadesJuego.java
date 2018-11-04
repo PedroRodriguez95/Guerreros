@@ -1,15 +1,14 @@
 package ar.edu.ub.testing.guerros.modelo;
 
+import ar.edu.ub.testing.guerreros.control.Ai;
+
 public class EntidadesJuego {
 	
+	private Ai                inteligenciaBot;
 	private GuerreroEnemigo[] guerrerosEnemigos;
 	private GuerreroJugador   jugador1;
 	private GuerreroJugador   jugador2;
-	
-	public EntidadesJuego(Modo_Juego modo) {
-		modo.generarEntidades(this);
-	}
-		
+
 	public GuerreroEnemigo[] getGuerrerosEnemigos() {
 		return guerrerosEnemigos;
 	}
@@ -18,7 +17,7 @@ public class EntidadesJuego {
 		this.guerrerosEnemigos = guerrerosEnemigos;
 	}
 	
-	public Guerrero getJugador() {
+	public GuerreroJugador getJugador() {
 		return jugador1;
 	}
 	
@@ -38,5 +37,33 @@ public class EntidadesJuego {
 
 	public void setJugador2(GuerreroJugador jugador2) {
 		this.jugador2 = jugador2;
+	}
+	
+	public boolean checkJugadorUnoMuerto() {
+		return jugador1.getAtributos().getVida() <= 0;
+	}
+	
+	public boolean checkJugadorDosMuerto() {
+		return jugador2.getAtributos().getVida() <= 0;
+	}
+	public boolean checkEnemigosMuertos() {
+		
+		boolean resultado = true;
+		
+		for(GuerreroEnemigo g : this.getGuerrerosEnemigos()) {
+			if(g.getAtributos().getVida() <= 0) {
+				resultado = false;
+			}
+		}
+		
+		return resultado;
+	}
+
+	public Ai getInteligenciaBot() {
+		return inteligenciaBot;
+	}
+
+	public void setInteligenciaBot(Ai inteligenciaBot) {
+		this.inteligenciaBot = inteligenciaBot;
 	}
 }

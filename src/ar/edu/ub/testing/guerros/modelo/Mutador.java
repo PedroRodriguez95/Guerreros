@@ -19,21 +19,21 @@ public enum Mutador {
 	MUTAR_PRESICION {
 		@Override
 		public void asignarPunto(Guerrero guerrero) {
-			guerrero.getAtributos().setPresicion(guerrero.getAtributos().getDefensa() + 1);
+			guerrero.getAtributos().setPresicion(guerrero.getAtributos().getPresicion() + 1);
 			
 		}
 	},
 	MUTAR_VIDA {
 		@Override
 		public void asignarPunto(Guerrero guerrero) {
-			guerrero.getAtributos().setVida(guerrero.getAtributos().getDefensa() + 1);
+			guerrero.getAtributos().setVida(guerrero.getAtributos().getVida() + 1);
 			
 		}
 	},
 	MUTAR_ENERGIA {
 		@Override
 		public void asignarPunto(Guerrero guerrero) {
-			guerrero.getAtributos().setEnergia(guerrero.getAtributos().getDefensa() + 1);
+			guerrero.getAtributos().setEnergia(guerrero.getAtributos().getEnergia() + 1);
 			
 		}
 	};

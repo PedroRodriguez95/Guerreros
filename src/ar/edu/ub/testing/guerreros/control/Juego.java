@@ -1,90 +1,48 @@
 package ar.edu.ub.testing.guerreros.control;
 
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-import ar.edu.ub.testing.guerreros.vista.VentanaDeCombate;
-import ar.edu.ub.testing.guerreros.vista.PanelDeCreacionDePersonaje;
-import ar.edu.ub.testing.guerreros.vista.PanelMenuPrincipal;
+import java.util.Scanner;
+
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
+import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 
 public class Juego {
-	EntidadesJuego entidades           ;
-	JFrame ventana                     = new JFrame();
-	JPanel contenedorDePaneles         = new JPanel();
-	CardLayout controlDePaneles        = new CardLayout();
-	JFrame panelDeCombate              = new VentanaDeCombate(this);
-	JPanel panelDeCreacionDePersonaje  = new PanelDeCreacionDePersonaje();
-	JPanel panelMenuPrincipal          = new PanelMenuPrincipal(contenedorDePaneles,controlDePaneles);
+	
+	private static Scanner scan = new Scanner(System.in);
+	private EntidadesJuego entidades;
+	private Partida partida;
+	
 
 	public Juego() {
-		
-		configurarBarra();
-		configurarVentana();
-		
+		entidades = new EntidadesJuego();
 	}
 	
-	public void configurarVentana() {
-		contenedorDePaneles.setLayout(controlDePaneles);
-		//LO PONGO EN COMENTARIO PORQUE LO TRANSFORME A VENTANA , YA  QUE DEBE SER UNA VENTANA. :D
-		//contenedorDePaneles.add(panelDeCombate, "1");
-		contenedorDePaneles.add(panelDeCreacionDePersonaje, "2");
-		contenedorDePaneles.add(panelMenuPrincipal, "3");
-		controlDePaneles.show(contenedorDePaneles, "3");
-		ventana.setTitle("Guerreros v1.0");
-		ventana.getContentPane().setLayout(new BorderLayout());
-		ventana.setSize(1000, 600);
-		ventana.setResizable(false);
-		ventana.setLocationRelativeTo(null);
-		ventana.add(contenedorDePaneles);
-		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		ventana.setVisible(true);
+	
+	
+	
+	//AL SELECCIONAR UN NUEVO JUEGO
+	public void newSinglePlayer() {
+		Modo_Juego.UN_JUGADOR.generarEntidades(entidades);
+		this.partida = new PartidaSingleplayer(entidades);
 	}
 	
-	public void configurarBarra() {
-		JMenuBar barra=new JMenuBar();
-		JMenu archivo=new JMenu("Juego");
-		JMenuItem salir=new JMenuItem("Salir");
-		JMenuItem cargar=new JMenuItem("Ir a menu");
-		JMenuItem guardar=new JMenuItem("Guardar");
-		cargar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controlDePaneles.show(contenedorDePaneles, "3");
-				;
-			}
-
-        });
-		salir.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-
-        });
-		barra.add(archivo);
-		archivo.add(cargar);
-		archivo.add(guardar);
-		archivo.add(salir);
-		ventana.setJMenuBar(barra);
+	public void newMultiCoop() {
+		Modo_Juego.MULTI_COOP.generarEntidades(entidades);
+		this.partida = new PartidaMultiplayerCoop(entidades);
 	}
 	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new Juego();
-			}
-		});
+	public void newMultiVersus() {
+		Modo_Juego.MULTI_VS.generarEntidades(entidades);
+		this.partida = new PartidaMultiplayerVersus(entidades);
 	}
-
+	
+	public void printEntidades() {
+		entidades.getJugador().printAtributos();
+		System.out.println("Guerreros Enemigos: ");
+		for (GuerreroEnemigo g : entidades.getGuerrerosEnemigos()) {
+			g.printAtributos();
+		}
+	}
 }
