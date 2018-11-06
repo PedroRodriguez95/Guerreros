@@ -26,7 +26,7 @@ public class EntidadesJuego {
 	}
 
 	public static void limpiarConsola() {
-		for (int i = 1; i < 70; i++) {
+		for (int i = 1; i < 100; i++) {
 			System.out.println(" ");
 		}
 	}

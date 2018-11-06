@@ -50,6 +50,11 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 		checkearCondicionesDeVictoria();
 		atacar(entidades.getJugador(),entidades.getGuerrerosEnemigos()[0]);
 		vista.print();
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		turnoEnemigo();
 	}
 

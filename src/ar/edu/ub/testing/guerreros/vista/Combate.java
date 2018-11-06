@@ -24,8 +24,6 @@ public class Combate implements IVista{
 	@Override
 	public void print() {
 		System.out.println(cabezera);
-		System.out.println("X");
-		System.out.print("X");
 		for (String[][] s : bloques) {
 			for (String[] s2 : s) {
 				for (String s3 : s2) {

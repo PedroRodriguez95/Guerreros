@@ -25,10 +25,15 @@ public class Consola implements IVista{
 	}
 	
 	public void actualizarConsola(String mensaje) {
+		/*
 		consola[3][1] = consola[2][1];
 		consola[2][1] = consola[1][1];
 		consola[1][1] = consola[0][1];
- 		consola[0][1] = mensaje;
+ 		consola[0][1] = mensaje;*/
+		consola[0][1] = consola[1][1];
+		consola[1][1] = consola[2][1];
+		consola[2][1] = consola[3][1];
+ 		consola[3][1] = mensaje;
 	}
 	
 	public void construirConsola() {
