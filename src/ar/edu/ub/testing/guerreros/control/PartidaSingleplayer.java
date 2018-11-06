@@ -84,7 +84,7 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	public void atacar(Guerrero atacante, Guerrero atacado){
 		int daño = atacante.getAtributos().getAtaque()-atacado.getAtributos().getDefensa();
 		atacante.atacar(atacado);
-		vista.mostrarMensajeEnConsola(atacante.getAtributos().getNombre() + " ataco a " + atacado.getAtributos().getNombre() + " por " + daño + " puntos de daño");
+		vista.mostrarMensajeEnConsola(" " + atacante.getAtributos().getNombre() + " ataco a " + atacado.getAtributos().getNombre() + " por " + daño + " puntos de daño");
 		
 	}
 }

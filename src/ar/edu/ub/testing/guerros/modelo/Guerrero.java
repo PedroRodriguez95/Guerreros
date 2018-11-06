@@ -57,8 +57,9 @@ public abstract class Guerrero {
 		if (this.getAtributos().getVida() <= 0) {
 			this.getCuerpo().setCuerpoMuerto();
 			return true;
+		}else{
+			return false;
 		}
-		return false;
 	}
 	
 	public void atacar(Guerrero enemigo) {
