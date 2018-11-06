@@ -6,7 +6,6 @@ public class Partida {
 	
 	EntidadesJuego entidades;
 	
-	
 	public Partida(EntidadesJuego entidadesExternas) {
 		
 		this.entidades = entidadesExternas;
@@ -16,5 +15,6 @@ public class Partida {
 	public EntidadesJuego getEntidades() {
 		return this.entidades;
 	}
+	
 	
 }

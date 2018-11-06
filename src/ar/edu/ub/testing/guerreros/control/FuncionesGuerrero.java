@@ -53,10 +53,7 @@ public class FuncionesGuerrero {
 	
 	public static void mutarGuerrero(int puntos, Guerrero guerrero) {
 		for (int i = 0; i < puntos; i ++) {
-			System.out.println("puntos = " + i);
 			int eleccion = 1 + rand.nextInt((5 - 1) + 1);
-			System.out.println(eleccion);
-			System.out.println(Mutador.values()[eleccion - 1]);
 			Mutador.values()[eleccion - 1 ].asignarPunto(guerrero);  //ASIGNA ALEATORIAMENTE EL TIPO DE MUTACION DESDE EL ENUM MUTADOR
 		}
 	}

@@ -1,26 +1,28 @@
 package ar.edu.ub.testing.guerreros.control;
 
+import ar.edu.ub.testing.guerreros.vista.Combate;
+import ar.edu.ub.testing.guerreros.vista.VistaCombate;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 
 public class PartidaSingleplayer extends Partida implements IPartida{
 	
 	private int turnoEnemigo = 0;
+	private VistaCombate vista;
 
 	public PartidaSingleplayer(EntidadesJuego entidadesExternas) {
 		super(entidadesExternas);
+		vista = new VistaCombate(entidadesExternas);
+		print();
 	}
 
 	@Override
-	public boolean checkearCondicionesDeVictoria(EntidadesJuego entidades) {
+	public void checkearCondicionesDeVictoria() {
 		if(this.getEntidades().checkJugadorUnoMuerto()) {
 			this.VictoriaEnemigos();
-			return true;
 		}
 		if(this.getEntidades().checkEnemigosMuertos()) {
 			this.VictoriaJugadorUno();
-			return true;
 		}
-		return false;
 	}
 
 	@Override
@@ -35,28 +37,25 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	@Override
 	public void VictoriaEnemigos() {
 	}
+	@Override
+	public void jugar() {
+		
+		}
 
 	@Override
-	public void turnoEnemigo(EntidadesJuego entidades) {
-		checkearCondicionesDeVictoria(entidades);
-		if (turnoEnemigo == 3) {
-			turnoEnemigo = 0;
-		}
-		entidades.getInteligenciaBot().setBot(entidades.getGuerrerosEnemigos()[turnoEnemigo]);
-		entidades.getInteligenciaBot().atacar();	
-		turnoJugador(entidades);
-			
+	public void turnoJugador() {
+		checkearCondicionesDeVictoria();
 	}
-		
-	@Override
-	public void turnoJugador(EntidadesJuego entidades) {
-		checkearCondicionesDeVictoria(entidades);
-		}
 
 	@Override
-	public void jugar(EntidadesJuego entidades) {
+	public void turnoEnemigo() {
+		checkearCondicionesDeVictoria();
 		
-		}
+	}
+	
+	public void print() {
+		vista.print();
+	}
 	
 }
 

@@ -40,18 +40,18 @@ public class EntidadesJuego {
 	}
 	
 	public boolean checkJugadorUnoMuerto() {
-		return jugador1.getAtributos().getVida() <= 0;
+		return jugador1.murio();
 	}
 	
 	public boolean checkJugadorDosMuerto() {
-		return jugador2.getAtributos().getVida() <= 0;
+		return jugador2.murio();
 	}
 	public boolean checkEnemigosMuertos() {
 		
 		boolean resultado = true;
 		
 		for(GuerreroEnemigo g : this.getGuerrerosEnemigos()) {
-			if(g.getAtributos().getVida() <= 0) {
+			if(!g.murio()) {
 				resultado = false;
 			}
 		}

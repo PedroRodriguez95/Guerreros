@@ -51,4 +51,12 @@ public abstract class Guerrero {
 	public void setOro(int oro) {
 		this.oro = oro;
 	}
+	
+	public boolean murio() {
+		if (this.getAtributos().getVida() <= 0) {
+			this.getCuerpo().setCuerpoMuerto();
+			return true;
+		}
+		return false;
+	}
 }
