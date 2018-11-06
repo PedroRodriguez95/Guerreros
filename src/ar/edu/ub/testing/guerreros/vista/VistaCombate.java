@@ -22,6 +22,8 @@ public class VistaCombate implements IVista{
 		consola.print();
 		
 	}
+
+
 	
 
 }

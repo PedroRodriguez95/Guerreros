@@ -29,7 +29,6 @@ public class Consola implements IVista{
 		consola[2][1] = consola[1][1];
 		consola[1][1] = consola[0][1];
  		consola[0][1] = mensaje;
- 		print();
 	}
 	
 	public void construirConsola() {
@@ -47,6 +46,7 @@ public class Consola implements IVista{
 			System.out.print(" ");
 		}
 	}
-	
+
+
 
 }

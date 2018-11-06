@@ -17,11 +17,6 @@ public class GuerreroJugador extends Guerrero {
 		this.oro = oro;
 	}
 	
-	public void atacar(GuerreroEnemigo enemigo) {
-		
-			enemigo.restarVida(this.getAtributos().getAtaque() - enemigo.getAtributos().getDefensa());
-
-		}
 }
 	
 	

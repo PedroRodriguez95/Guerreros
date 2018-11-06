@@ -6,10 +6,4 @@ public class GuerreroEnemigo extends Guerrero {
 		super();
 	}
 	
-	public void atacar(Guerrero enemigo) {
-		enemigo.restarVida(this.getAtributos().getAtaque() - enemigo.getAtributos().getDefensa());
-
-	}
-
-
 }

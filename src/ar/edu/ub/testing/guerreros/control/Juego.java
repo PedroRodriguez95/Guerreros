@@ -20,8 +20,6 @@ public class Juego {
 	}
 	
 	
-	
-	
 	//AL SELECCIONAR UN NUEVO JUEGO
 	public void newSinglePlayer() {
 		Modo_Juego.UN_JUGADOR.generarEntidades(entidades);

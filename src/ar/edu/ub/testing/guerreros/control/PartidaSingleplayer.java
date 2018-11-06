@@ -1,8 +1,10 @@
 package ar.edu.ub.testing.guerreros.control;
 
-import ar.edu.ub.testing.guerreros.vista.Combate;
+import java.util.concurrent.TimeUnit;
+
 import ar.edu.ub.testing.guerreros.vista.VistaCombate;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
+import ar.edu.ub.testing.guerros.modelo.Guerrero;
 
 public class PartidaSingleplayer extends Partida implements IPartida{
 	
@@ -13,6 +15,7 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 		super(entidadesExternas);
 		vista = new VistaCombate(entidadesExternas);
 		print();
+		jugar();
 	}
 
 	@Override
@@ -39,17 +42,33 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	}
 	@Override
 	public void jugar() {
-		
+		turnoJugador();
 		}
 
 	@Override
 	public void turnoJugador() {
 		checkearCondicionesDeVictoria();
+		atacar(entidades.getJugador(),entidades.getGuerrerosEnemigos()[0]);
+		vista.print();
+		turnoEnemigo();
 	}
 
 	@Override
 	public void turnoEnemigo() {
 		checkearCondicionesDeVictoria();
+		atacar(entidades.getGuerrerosEnemigos()[turnoEnemigo],entidades.getJugador());
+		if(turnoEnemigo == 3){
+			turnoEnemigo = 0;
+		}else{
+			turnoEnemigo++;
+		}
+		vista.print();
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		turnoJugador();
 		
 	}
 	
@@ -57,6 +76,12 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 		vista.print();
 	}
 	
+	public void atacar(Guerrero atacante, Guerrero atacado){
+		int daño = atacante.getAtributos().getAtaque()-atacado.getAtributos().getDefensa();
+		atacante.atacar(atacado);
+		vista.mostrarMensajeEnConsola(atacante.getAtributos().getNombre() + " ataco a " + atacado.getAtributos().getNombre() + " por " + daño + " puntos de daño");
+		
+	}
 }
 
 

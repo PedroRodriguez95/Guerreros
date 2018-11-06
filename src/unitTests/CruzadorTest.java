@@ -1,10 +1,6 @@
 package unitTests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-
 import ar.edu.ub.testing.guerros.modelo.Cruzador;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 
@@ -15,7 +11,7 @@ class CruzadorTest {
 
 	
 
-	@Test
+	@org.junit.Test
 	void testCruzarMetodo1() {
 		guerreroUno.setAtributosSimple(4, 3, 3, 4, 3);
 		guerreroDos.setAtributosSimple(3, 4, 4, 3, 4);
@@ -28,6 +24,7 @@ class CruzadorTest {
 		
 	}
 	
+	@org.junit.Test
 	void testCruzarMetodo2() {
 		guerreroUno.setAtributosSimple(4, 3, 3, 4, 3);
 		guerreroDos.setAtributosSimple(3, 4, 4, 3, 4);
@@ -39,7 +36,7 @@ class CruzadorTest {
 		assertEquals(3,hijo.getAtributos().getVida());
 		
 	}
-
+	@org.junit.Test
 	void testCruzarMetodo3() {
 		guerreroUno.setAtributosSimple(4, 3, 3, 4, 3);
 		guerreroDos.setAtributosSimple(3, 4, 4, 3, 4);
@@ -52,6 +49,7 @@ class CruzadorTest {
 		
 	}
 	
+	@org.junit.Test
 	void testCruzarMetodo4() {
 		guerreroUno.setAtributosSimple(4, 3, 3, 4, 3);
 		guerreroDos.setAtributosSimple(3, 4, 4, 3, 4);

@@ -44,6 +44,7 @@ public abstract class Guerrero {
 		this.getAtributos().setPresicion(presicion);
 		this.getAtributos().setVida(vida);
 	}
+	
 	public int getOro() {
 		return oro;
 	}
@@ -59,4 +60,11 @@ public abstract class Guerrero {
 		}
 		return false;
 	}
+	
+	public void atacar(Guerrero enemigo) {
+		
+		enemigo.restarVida(this.getAtributos().getAtaque() - enemigo.getAtributos().getDefensa());
+
+	}
 }
+

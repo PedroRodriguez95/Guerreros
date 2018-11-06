@@ -24,9 +24,10 @@ public class Combate implements IVista{
 	@Override
 	public void print() {
 		System.out.println(cabezera);
+		System.out.println("X");
+		System.out.print("X");
 		for (String[][] s : bloques) {
 			for (String[] s2 : s) {
-				//System.out.println("");
 				for (String s3 : s2) {
 					if (s3 != null) {
 					System.out.print(s3);
@@ -98,6 +99,22 @@ public class Combate implements IVista{
 		bloque[2][61] = null;
 		
 	}
+	public void printVidaGuerreros(String vidas){
+		int cantidad = 62 - vidas.length();
+		System.out.print(vidas);
+		for (int i = 0; i <= cantidad; i++){
+			System.out.print(" ");
+		}
 		
+	}
+	public String getVidaGuerreros(EntidadesJuego entidades){
+		String vidas = entidades.getJugador().getAtributos().getNombre();
+		vidas += " = " + entidades.getJugador().getAtributos().getVida();
+		for(Guerrero g : entidades.getGuerrerosEnemigos()){
+			vidas += " " + g.getAtributos().getNombre() + " = " + g.getAtributos().getVida();
+		}
+		return vidas;
+	}
+
 	
 }
