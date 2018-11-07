@@ -8,5 +8,6 @@ public class Aplicacion {
 		
 		Juego juego = new Juego();
 		juego.newSinglePlayer();
+
 	}
 }

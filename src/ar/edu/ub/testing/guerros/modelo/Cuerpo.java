@@ -28,9 +28,9 @@ public class Cuerpo {
 	}
 	
 	public void setCuerpoMuerto() {
-		this.setCabeza("o");
-		this.setTorso ("X");
-		this.setPiernas(" ");
+		this.setCabeza ("o");
+		this.setTorso  ("/X\\");
+		this.setPiernas("!! ");
 
 	}
 	

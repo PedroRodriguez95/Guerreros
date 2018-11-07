@@ -8,7 +8,6 @@ import ar.edu.ub.testing.guerros.modelo.Guerrero;
 public class Combate implements IVista{
 	
 	private ArrayList<String[][]> bloques = new ArrayList<>();
-	private String                cabezera = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	private String[][]            bloqueUno = new String[4][64];
 	private String[][]            bloqueDos = new String[4][64];
 	private String[][]            bloqueTres = new String[4][64];
@@ -23,7 +22,6 @@ public class Combate implements IVista{
 	
 	@Override
 	public void print() {
-		System.out.println(cabezera);
 		for (String[][] s : bloques) {
 			for (String[] s2 : s) {
 				for (String s3 : s2) {

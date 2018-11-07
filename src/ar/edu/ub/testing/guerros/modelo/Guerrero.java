@@ -15,6 +15,9 @@ public abstract class Guerrero {
 
 	protected void restarVida(int restaVida){
 		
+		if ((this.getAtributos().getVida()-restaVida) <= 0) {
+			this.getAtributos().setVida(0);
+		}
 		this.getAtributos().setVida(this.getAtributos().getVida() - restaVida);
 		
 	}
@@ -56,6 +59,7 @@ public abstract class Guerrero {
 	public boolean murio() {
 		if (this.getAtributos().getVida() <= 0) {
 			this.getCuerpo().setCuerpoMuerto();
+			this.getAtributos().setVida(0);
 			return true;
 		}else{
 			return false;
@@ -64,8 +68,9 @@ public abstract class Guerrero {
 	
 	public void atacar(Guerrero enemigo) {
 		
-		enemigo.restarVida(this.getAtributos().getAtaque() - enemigo.getAtributos().getDefensa());
-
+		//enemigo.restarVida(this.getAtributos().getAtaque() - enemigo.getAtributos().getDefensa());
+		enemigo.getAtributos().setVida(enemigo.getAtributos().getVida() - (this.getAtributos().getAtaque() - (enemigo.getAtributos().getDefensa()/2)));
+		
 	}
 }
 

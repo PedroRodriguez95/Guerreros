@@ -19,18 +19,24 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	}
 
 	@Override
-	public void checkearCondicionesDeVictoria() {
+	public boolean checkearCondicionesDeVictoria() {
 		if(this.getEntidades().checkJugadorUnoMuerto()) {
 			this.VictoriaEnemigos();
+			return true;
 		}
 		if(this.getEntidades().checkEnemigosMuertos()) {
 			this.VictoriaJugadorUno();
+			return true;
 		}
+		return false;
+		
 	}
 
 	@Override
 	public void VictoriaJugadorUno() {
 		this.getEntidades().getJugador().setOro(this.getEntidades().getJugador().getOro() + 300);
+		vista.mostrarMensajeEnConsola("Ganador: " + this.getEntidades().getJugador().getAtributos().getNombre());
+		print();
 	}
 
 	@Override
@@ -39,6 +45,8 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 
 	@Override
 	public void VictoriaEnemigos() {
+		System.out.println("Ganadores = Enemigos");
+
 	}
 	@Override
 	public void jugar() {
@@ -48,37 +56,41 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	@Override
 	public void turnoJugador() {
 		checkearCondicionesDeVictoria();
-		atacar(entidades.getJugador(),entidades.getGuerrerosEnemigos()[0]);
-		vista.print();
+		atacar(entidades.getJugador(),entidades.getGuerrerosEnemigos()[turnoEnemigo]);
+		print();
 		try {
 			TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		turnoEnemigo();
+
+		if(!checkearCondicionesDeVictoria()) {
+			turnoEnemigo();
+		}
 	}
 
 	@Override
 	public void turnoEnemigo() {
-		checkearCondicionesDeVictoria();
 		atacar(entidades.getGuerrerosEnemigos()[turnoEnemigo],entidades.getJugador());
 		if(turnoEnemigo == 3){
 			turnoEnemigo = 0;
 		}else{
 			turnoEnemigo++;
 		}
-		vista.print();
+		print();
 		try {
 			TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		turnoJugador();
 		
+		if(!checkearCondicionesDeVictoria()) {
+			turnoJugador();
+		}
 	}
 	
 	public void print() {
-		vista.print();
+		vista.print(entidades);
 	}
 	
 	public void atacar(Guerrero atacante, Guerrero atacado){
