@@ -25,12 +25,6 @@ public class EntidadesJuego {
 		this.jugador1 = jugador;
 	}
 
-	public static void limpiarConsola() {
-		for (int i = 1; i < 100; i++) {
-			System.out.println(" ");
-		}
-	}
-
 	public Guerrero getJugador2() {
 		return jugador2;
 	}

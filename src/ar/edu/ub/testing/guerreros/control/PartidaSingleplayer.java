@@ -1,5 +1,6 @@
 package ar.edu.ub.testing.guerreros.control;
 
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import ar.edu.ub.testing.guerreros.vista.VistaCombate;
@@ -34,8 +35,7 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 
 	@Override
 	public void VictoriaJugadorUno() {
-		this.getEntidades().getJugador().setOro(this.getEntidades().getJugador().getOro() + 300);
-		vista.mostrarMensajeEnConsola("Ganador: " + this.getEntidades().getJugador().getAtributos().getNombre());
+		vista.mostrarMensajeEnConsola(" Ganador: " + this.getEntidades().getJugador().getAtributos().getNombre());
 		print();
 	}
 
@@ -45,7 +45,8 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 
 	@Override
 	public void VictoriaEnemigos() {
-		System.out.println("Ganadores = Enemigos");
+		vista.mostrarMensajeEnConsola(" Ganador: Enemigos");
+		print();
 
 	}
 	@Override
@@ -56,14 +57,8 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	@Override
 	public void turnoJugador() {
 		checkearCondicionesDeVictoria();
-		atacar(entidades.getJugador(),entidades.getGuerrerosEnemigos()[turnoEnemigo]);
+		controladorHumano();
 		print();
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
 		if(!checkearCondicionesDeVictoria()) {
 			turnoEnemigo();
 		}
@@ -71,19 +66,15 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 
 	@Override
 	public void turnoEnemigo() {
-		atacar(entidades.getGuerrerosEnemigos()[turnoEnemigo],entidades.getJugador());
-		if(turnoEnemigo == 3){
-			turnoEnemigo = 0;
-		}else{
-			turnoEnemigo++;
-		}
-		print();
 		try {
 			TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+		turnoEnemigo++;
+		turnoEnemigo =  buscarSiguienteEnemigoNoMuerto(turnoEnemigo);
+		atacar(entidades.getGuerrerosEnemigos()[turnoEnemigo],entidades.getJugador());
+		print();
 		if(!checkearCondicionesDeVictoria()) {
 			turnoJugador();
 		}
@@ -93,12 +84,72 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 		vista.print(entidades);
 	}
 	
+	private int buscarSiguienteEnemigoNoMuerto(int turno) {
+		int siguienteTurno = turno;
+		while (entidades.getGuerrerosEnemigos()[siguienteTurno].murio()) {
+			
+			if (siguienteTurno == 3) {
+				siguienteTurno = 0;
+				
+			}else {
+				
+				siguienteTurno++;
+				
+			}
+		}
+		return siguienteTurno;
+	}
+	
 	public void atacar(Guerrero atacante, Guerrero atacado){
 		int daño = atacante.getAtributos().getAtaque()-atacado.getAtributos().getDefensa();
+		if (daño < 0) {
+			daño = 0;
+		}
 		atacante.atacar(atacado);
 		vista.mostrarMensajeEnConsola(" " + atacante.getAtributos().getNombre() + " ataco a " + atacado.getAtributos().getNombre() + " por " + daño + " puntos de daño");
 		
 	}
+	
+	public void controladorHumano() {
+		Scanner scan = new Scanner(System.in);
+		int eleccion = scan.nextInt();
+		while(!(1<= eleccion && eleccion <= 5)) {
+			eleccion = scan.nextInt();
+		}
+		switch(eleccion) {
+		case 1:
+			humanoAtaca(entidades);	
+		case 2:
+			//break;
+		case 3:
+			//break;
+		case 4:
+			//break;
+		case 5:
+			//break;
+		}
+	}
+	
+	public void humanoAtaca(EntidadesJuego entidades) {
+		Scanner scan = new Scanner(System.in);
+		int eleccion = scan.nextInt();
+		while(!(1<= eleccion && eleccion <= entidades.getGuerrerosEnemigos().length)) {
+			eleccion = scan.nextInt();
+		}
+		atacar(entidades.getJugador(),entidades.getGuerrerosEnemigos()[eleccion-1]);
+	}
+
+	@Override
+	public void terminarPartida() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void record() {
+		
+	}
+	
 }
 
 

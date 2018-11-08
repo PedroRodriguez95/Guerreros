@@ -2,8 +2,8 @@ package ar.edu.ub.testing.guerreros.control;
 import java.util.Random;
 import java.util.Scanner;
 
+import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerros.modelo.Cruzador;
-import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 import ar.edu.ub.testing.guerros.modelo.GuerreroJugador;
@@ -19,7 +19,7 @@ public class FuncionesGuerrero {
 		GuerreroJugador jugador = new GuerreroJugador();
 		System.out.println("Ingresar nombre: ");       //CREA UN NUEVO JUGADOR 
 		jugador.getAtributos().setNombre(scan.next());
-		mutarGuerreroManual(50, jugador);
+		mutarGuerreroManual(jugador.getPuntos(), jugador);
 		return jugador;
 	}
 	
@@ -34,8 +34,8 @@ public class FuncionesGuerrero {
 	public static void mutarGuerreroManual(int puntos, Guerrero guerrero){
 		while (puntos > 0) {
 			int eleccion = 0;
-			while((1 <= eleccion && eleccion <= 5) != true) {
-				EntidadesJuego.limpiarConsola();
+			while(!(1 <= eleccion && eleccion <= 5)) {
+				UtilidadesConsola.limpiarConsola();
 				System.out.println("Puntos restantes =" + puntos);
 				System.out.println("----------------------------");
 				System.out.println("1) Ataque ->\t"     + guerrero.getAtributos().getAtaque());

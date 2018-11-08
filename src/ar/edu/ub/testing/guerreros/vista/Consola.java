@@ -1,12 +1,9 @@
 package ar.edu.ub.testing.guerreros.vista;
 
-import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
-
 public class Consola implements IVista{
 	
 	private String     cabezera = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	private String[][] consola = new String[4][3];
-	private String     fin = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	
 	public Consola() {
 		construirConsola();
@@ -21,15 +18,11 @@ public class Consola implements IVista{
 			System.out.print(s[2]);
 			System.out.println("");
 		}
-		System.out.println(fin);
+		System.out.println(cabezera);
+		printOpcionesHumano();
 	}
 	
 	public void actualizarConsola(String mensaje) {
-		/*
-		consola[3][1] = consola[2][1];
-		consola[2][1] = consola[1][1];
-		consola[1][1] = consola[0][1];
- 		consola[0][1] = mensaje;*/
 		consola[0][1] = consola[1][1];
 		consola[1][1] = consola[2][1];
 		consola[2][1] = consola[3][1];
@@ -50,6 +43,11 @@ public class Consola implements IVista{
 		for(int i = 0; i <= cantidad; i++ ) {
 			System.out.print(" ");
 		}
+	}
+	
+	public void printOpcionesHumano() {
+		System.out.println("X  1)Atacar 2)Defender 3)Especial 4)Usar Item 5)Ver Atributos  X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 	}
 
 

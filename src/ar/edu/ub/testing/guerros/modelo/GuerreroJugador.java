@@ -2,20 +2,24 @@ package ar.edu.ub.testing.guerros.modelo;
 
 public class GuerreroJugador extends Guerrero {
 	
-	private int oro;
+	private int puntos;
 	
 	public GuerreroJugador() {
 		super();
-		this.setOro(0);
+		this.setPuntos(100);
 	}
 
-	public int getOro() {
-		return oro;
+	public int getPuntos() {
+		return puntos;
 	}
 
-	public void setOro(int oro) {
-		this.oro = oro;
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
 	}
+	
+	
+
+
 	
 }
 	

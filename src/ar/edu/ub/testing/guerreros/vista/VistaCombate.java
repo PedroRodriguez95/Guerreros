@@ -19,6 +19,7 @@ public class VistaCombate{
 	}
 
 	public void print(EntidadesJuego entidades) {
+		UtilidadesConsola.limpiarConsola();
 		actualizarEntidades(entidades);
 		cabezera.print();
 		combate.print();

@@ -5,7 +5,6 @@ public abstract class Guerrero {
 
 	private Atributos atributos;
 	private Cuerpo    cuerpo;
-	private int oro;
 	
 
 	public Guerrero() {
@@ -13,13 +12,10 @@ public abstract class Guerrero {
 		this.cuerpo = new Cuerpo();
 	}
 
-	protected void restarVida(int restaVida){
-		
-		if ((this.getAtributos().getVida()-restaVida) <= 0) {
-			this.getAtributos().setVida(0);
+	public void dañar(int daño) {
+		if (daño > 0) {
+			this.getAtributos().setVida(this.getAtributos().getVida() - daño);
 		}
-		this.getAtributos().setVida(this.getAtributos().getVida() - restaVida);
-		
 	}
 	public Atributos getAtributos() {
 		return atributos;
@@ -39,6 +35,7 @@ public abstract class Guerrero {
 		System.out.println("Vida = "  + this.getAtributos().getVida());
 	}
 	
+	//PARA RAPIDA CONSTRUCCION EN CASOS DE PRUEBA
 	public void setAtributosSimple(int ataque,int defensa,int energia,int presicion, int vida) {
 		
 		this.getAtributos().setAtaque(ataque);
@@ -48,13 +45,6 @@ public abstract class Guerrero {
 		this.getAtributos().setVida(vida);
 	}
 	
-	public int getOro() {
-		return oro;
-	}
-
-	public void setOro(int oro) {
-		this.oro = oro;
-	}
 	
 	public boolean murio() {
 		if (this.getAtributos().getVida() <= 0) {
@@ -67,10 +57,7 @@ public abstract class Guerrero {
 	}
 	
 	public void atacar(Guerrero enemigo) {
-		
-		//enemigo.restarVida(this.getAtributos().getAtaque() - enemigo.getAtributos().getDefensa());
-		enemigo.getAtributos().setVida(enemigo.getAtributos().getVida() - (this.getAtributos().getAtaque() - (enemigo.getAtributos().getDefensa()/2)));
-		
+		enemigo.dañar(this.getAtributos().getAtaque() - (enemigo.getAtributos().getDefensa()/2));		
 	}
 }
 

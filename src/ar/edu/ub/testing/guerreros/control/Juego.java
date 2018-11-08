@@ -5,6 +5,7 @@ package ar.edu.ub.testing.guerreros.control;
 
 import java.util.Scanner;
 
+import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 
@@ -17,6 +18,7 @@ public class Juego {
 
 	public Juego() {
 		entidades = new EntidadesJuego();
+		menuPrincipal();
 	}
 	
 	
@@ -42,5 +44,83 @@ public class Juego {
 		for (GuerreroEnemigo g : entidades.getGuerrerosEnemigos()) {
 			g.printAtributos();
 		}
+	}
+	
+	public void menuPrincipal() {
+		UtilidadesConsola.limpiarConsola();
+		printMenuPrincipal();
+		int eleccion = scan.nextInt();
+		while(!(1<= eleccion && eleccion <= 4)) {
+			printMenuPrincipal();
+			eleccion = scan.nextInt();
+		}
+		switch(eleccion) {
+		case 1:
+			menuSeleccionJuego();
+			break;
+		case 2:
+			System.out.println("A implementar");
+			break;
+		case 3: 
+			System.out.println("A implementar");
+			break;
+		case 4:
+			break;
+		}
+			
+		
+	}
+	
+	public void menuSeleccionJuego() {
+		UtilidadesConsola.limpiarConsola();
+		printMenuSeleccionJuego();
+		int eleccion = scan.nextInt();
+		while(!(1<= eleccion && eleccion <= 4)) {
+			printMenuPrincipal();
+			eleccion = scan.nextInt();
+		}
+		switch(eleccion) {
+		case 1:
+			newSinglePlayer();
+			menuPrincipal();
+			break;
+		case 2:
+			newMultiCoop();
+			break;
+		case 3: 
+			newMultiVersus();
+			break;
+		case 4:
+			menuPrincipal();
+		}
+		
+	}
+	
+	public void printMenuPrincipal() {
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X             GUERREROS             X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X 1) Nuevo Juego                    X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X 2) Ver Records                    X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X 3) Tutorial                       X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X 4) Salir                          X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+	}
+	
+	public void printMenuSeleccionJuego() {
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X             GUERREROS             X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X 1) SinglePlayer                   X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X 2) MultiPlayer Cooperativo        X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X 3) MultiPlayer Versus             X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X 4) Atras                          X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 	}
 }

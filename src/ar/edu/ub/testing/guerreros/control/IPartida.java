@@ -9,6 +9,8 @@ public interface IPartida {
 	public void jugar();
 	public void turnoJugador();
 	public void turnoEnemigo();
+	public void terminarPartida();
+	public void record();
 	
 
 }
