@@ -52,10 +52,10 @@ public abstract class Guerrero {
 			this.getAtributos().setVida(0);
 			return true;
 		}else{
+			this.cuerpo = new Cuerpo();
 			return false;
 		}
 	}
-	
 	public void atacar(Guerrero enemigo) {
 		enemigo.dañar(this.getAtributos().getAtaque() - (enemigo.getAtributos().getDefensa()/2));		
 	}

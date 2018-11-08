@@ -9,7 +9,7 @@ import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 import ar.edu.ub.testing.guerros.modelo.GuerreroJugador;
 import ar.edu.ub.testing.guerros.modelo.Mutador;
 
-public class FuncionesGuerrero {
+public class LaboratorioGuerreros {
 	
 	static Random  rand = new Random();
 	static Scanner scan = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class FuncionesGuerrero {
 	public static void generarGuerrerosEnemigos(GuerreroEnemigo[] enemigos) {
 		for (int i = 0; i < enemigos.length; i++) {
 			GuerreroEnemigo guerrero = new GuerreroEnemigo();              //CREA UN SET INICIAL DE GUERREROS ENEMIGOS
-			mutarGuerrero(25,guerrero);
+			mutarGuerrero(10,guerrero);
 			guerrero.getAtributos().setNombre("Enemigo " + (i+1));
 			enemigos[i] = guerrero;
 		}
@@ -57,34 +57,13 @@ public class FuncionesGuerrero {
 			Mutador.values()[eleccion - 1 ].asignarPunto(guerrero);  //ASIGNA ALEATORIAMENTE EL TIPO DE MUTACION DESDE EL ENUM MUTADOR
 		}
 	}
+	
 	public static GuerreroEnemigo cruzarGuerreros(GuerreroEnemigo padre, GuerreroEnemigo madre,String nombre){
-		Guerrero hijo = new GuerreroEnemigo();
-		hijo.getAtributos().setNombre(nombre);
 		Random rand = new Random();
 		int eleccion = 1 + rand.nextInt((4 - 1) + 1);
 		return Cruzador.values()[eleccion - 1 ].cruzar(padre, madre, nombre); //SELECCIONA ALEATORIAMENTE EL TIPO DE CRUZE DESDE EL ENUM CRUZADOR
 	}
 	
-	public static void EvolucionarGuerrerosEnemigos(GuerreroEnemigo[] enemigos){
-		// CRUZA Y MUTA LOS GUERREROS ENEMIGOS PARA FORMAR UNA NUEVA GENERACION
-		
-		GuerreroEnemigo[] nuevaGeneracion = new GuerreroEnemigo[enemigos.length];
-		GuerreroEnemigo padre = null;
-		GuerreroEnemigo madre = null;
-		
-		for (int i= 0; i < enemigos.length; i++){
-			String nombre = "Enemigo " + (i+1);
-			while(madre.getAtributos().equals(padre.getAtributos())){  //ME ASEGURO QUE NUNCA SE CRUZEN 2 GUERREROS IGUALES
-				
-				padre = enemigos[0 + rand.nextInt((3 - 1) + 1)];
-				madre = enemigos[0 + rand.nextInt((3 - 1) + 1)];
-				
-			}
-			GuerreroEnemigo hijo = cruzarGuerreros(padre,madre,nombre);  //SE CREA EL GUERRERO HIJO A PARTIR DE LOS PADRES
-			mutarGuerrero(1,hijo);         //SE MUTA EL NUEVO GUERRERO
-			nuevaGeneracion[i] = hijo;
-		}
-		enemigos = nuevaGeneracion;
-	}
+
 	
 }

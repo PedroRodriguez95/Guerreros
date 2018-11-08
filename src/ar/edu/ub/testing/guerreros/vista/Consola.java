@@ -45,6 +45,13 @@ public class Consola implements IVista{
 		}
 	}
 	
+	public void limpiarConsola() {
+		consola[0][1] = " ";
+		consola[1][1] = " ";
+		consola[2][1] = " ";
+ 		consola[3][1] = " ";
+	}
+	
 	public void printOpcionesHumano() {
 		System.out.println("X  1)Atacar 2)Defender 3)Especial 4)Usar Item 5)Ver Atributos  X");
 		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");

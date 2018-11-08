@@ -4,6 +4,8 @@ import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 
 public class CabezeraSingleplayer extends Cabezera {
 	
+	String separadorTitulo ="XXXXXXXXXXXXXXXXXXXXXXX";
+	String titulo;
 	String separador ="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	String[][] bloque = new String[2][3];
 	
@@ -22,6 +24,7 @@ public class CabezeraSingleplayer extends Cabezera {
 		int cantidadEspacios = 64 - (bloque[0][0].length() + bloque[0][2].length());
 		bloque[0][1] = construirEspacios(cantidadEspacios-1);
 		bloque[1][1] = construirEspacios((cantidadEspacios-2) + bloque[0][0].length());
+		titulo = generarTitulo(entidades);
 
 	}
 	
@@ -32,9 +35,29 @@ public class CabezeraSingleplayer extends Cabezera {
 		}
 		return espacio;
 	}
+	
+	public String generarTitulo(EntidadesJuego entidades) {
+		String titulo = "Nivel: " + entidades.getRound();
+		int cantidadEspacios = 64 - ((separadorTitulo.length()*2) + titulo.length());
+		cantidadEspacios = cantidadEspacios - 4;
+		String espacio = " ";
+		for (int i = 0; i <= cantidadEspacios/2;i++){
+			espacio += " ";
+		}
+		if(entidades.getRound() >= 10) {
+			titulo += " ";
+		}
+		String resultado = separadorTitulo + espacio + titulo + espacio + separadorTitulo;
+		
+		return resultado;
+		
+	}
 
 	@Override
 	public void print() {
+		
+		System.out.println(separador);
+		System.out.println(titulo);
 		System.out.println(separador);
 		
 		for(String[] s : bloque) {

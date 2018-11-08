@@ -3,9 +3,11 @@ package ar.edu.ub.testing.guerreros.control;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerreros.vista.VistaCombate;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
+import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 
 public class PartidaSingleplayer extends Partida implements IPartida{
 	
@@ -36,7 +38,18 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	@Override
 	public void VictoriaJugadorUno() {
 		vista.mostrarMensajeEnConsola(" Ganador: " + this.getEntidades().getJugador().getAtributos().getNombre());
+		vista.mostrarMensajeEnConsola(" Comenzando nivel: " + (this.getEntidades().getRound() + 1));
 		print();
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		entidades.siguienteRound();
+		vista = new VistaCombate(entidades);
+		turnoEnemigo = 0;
+		checkearCondicionesDeVictoria();
+		jugar();
 	}
 
 	@Override
@@ -45,8 +58,10 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 
 	@Override
 	public void VictoriaEnemigos() {
-		vista.mostrarMensajeEnConsola(" Ganador: Enemigos");
+		vista.mostrarMensajeEnConsola("Jugador derrotado por generacion #" + this.getEntidades().getRound());
 		print();
+		wait(5);
+		new Juego();
 
 	}
 	@Override
@@ -56,9 +71,9 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 
 	@Override
 	public void turnoJugador() {
+		print();
 		checkearCondicionesDeVictoria();
 		controladorHumano();
-		print();
 		if(!checkearCondicionesDeVictoria()) {
 			turnoEnemigo();
 		}
@@ -66,18 +81,13 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 
 	@Override
 	public void turnoEnemigo() {
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		turnoEnemigo++;
+		print();
+		checkearCondicionesDeVictoria();
+		wait(2);
 		turnoEnemigo =  buscarSiguienteEnemigoNoMuerto(turnoEnemigo);
 		atacar(entidades.getGuerrerosEnemigos()[turnoEnemigo],entidades.getJugador());
-		print();
-		if(!checkearCondicionesDeVictoria()) {
-			turnoJugador();
-		}
+		turnoEnemigo ++;
+		turnoJugador();
 	}
 	
 	public void print() {
@@ -85,23 +95,26 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	}
 	
 	private int buscarSiguienteEnemigoNoMuerto(int turno) {
-		int siguienteTurno = turno;
-		while (entidades.getGuerrerosEnemigos()[siguienteTurno].murio()) {
-			
-			if (siguienteTurno == 3) {
-				siguienteTurno = 0;
-				
-			}else {
-				
-				siguienteTurno++;
-				
-			}
+		if (turno >= 3) {
+			turno = 0;
 		}
+		int siguienteTurno = turno;
+			while (entidades.getGuerrerosEnemigos()[siguienteTurno].murio()) {
+				
+				if (siguienteTurno == 3) {
+					siguienteTurno = 0;
+					
+				}else {
+					
+					siguienteTurno++;
+					
+				}
+			}
 		return siguienteTurno;
 	}
 	
 	public void atacar(Guerrero atacante, Guerrero atacado){
-		int daño = atacante.getAtributos().getAtaque()-atacado.getAtributos().getDefensa();
+		int daño = atacante.getAtributos().getAtaque() - (atacado.getAtributos().getDefensa()/2);
 		if (daño < 0) {
 			daño = 0;
 		}
@@ -119,14 +132,16 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 		switch(eleccion) {
 		case 1:
 			humanoAtaca(entidades);	
+			break;
 		case 2:
-			//break;
+			 break;
 		case 3:
-			//break;
+			break;
 		case 4:
-			//break;
+			break;
 		case 5:
-			//break;
+			verAtributos();
+			break;
 		}
 	}
 	
@@ -141,13 +156,30 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 
 	@Override
 	public void terminarPartida() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void record() {
 		
+	}
+	
+	public void wait(int segundos) {
+		try {
+			TimeUnit.SECONDS.sleep(segundos);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void verAtributos() {
+		entidades.getJugador().printAtributos();
+		System.out.println("Guerreros Enemigos: ");
+		for (GuerreroEnemigo g : entidades.getGuerrerosEnemigos()) {
+			g.printAtributos();
+		}
+		UtilidadesConsola.apretarEnterParaContinuar();
+		turnoJugador();
 	}
 	
 }

@@ -8,8 +8,8 @@ public enum Modo_Juego {
 		@Override
 		public void generarEntidades(EntidadesJuego entidades) {
 			entidades.setGuerrerosEnemigos(new GuerreroEnemigo[4]);
-			FuncionesGuerrero.generarGuerrerosEnemigos(entidades.getGuerrerosEnemigos());
-			entidades.setJugador(FuncionesGuerrero.nuevoJugador());
+			LaboratorioGuerreros.generarGuerrerosEnemigos(entidades.getGuerrerosEnemigos());
+			entidades.setJugador(LaboratorioGuerreros.nuevoJugador());
 			entidades.setInteligenciaBot(new AiSingleplayer(entidades));
 		}
 
@@ -18,8 +18,8 @@ public enum Modo_Juego {
 
 		@Override
 		public void generarEntidades(EntidadesJuego entidades) {
-			entidades.setJugador(FuncionesGuerrero.nuevoJugador());
-			entidades.setJugador2(FuncionesGuerrero.nuevoJugador());
+			entidades.setJugador(LaboratorioGuerreros.nuevoJugador());
+			entidades.setJugador2(LaboratorioGuerreros.nuevoJugador());
 		}
 		
 	},
@@ -27,9 +27,9 @@ public enum Modo_Juego {
 		@Override
 		public void generarEntidades(EntidadesJuego entidades) {
 			entidades.setGuerrerosEnemigos(new GuerreroEnemigo[8]);
-			FuncionesGuerrero.generarGuerrerosEnemigos(entidades.getGuerrerosEnemigos());
-			entidades.setJugador(FuncionesGuerrero.nuevoJugador());
-			entidades.setJugador(FuncionesGuerrero.nuevoJugador());
+			LaboratorioGuerreros.generarGuerrerosEnemigos(entidades.getGuerrerosEnemigos());
+			entidades.setJugador(LaboratorioGuerreros.nuevoJugador());
+			entidades.setJugador(LaboratorioGuerreros.nuevoJugador());
 			entidades.setInteligenciaBot(new AiMultiplayer());
 		}
 

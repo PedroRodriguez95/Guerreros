@@ -5,6 +5,7 @@ public enum Cruzador {
 		@Override
 		public GuerreroEnemigo cruzar(GuerreroEnemigo padre, GuerreroEnemigo madre, String nombre) {
 			GuerreroEnemigo hijo = new GuerreroEnemigo();
+			hijo.getAtributos().setNombre(nombre);
 			hijo.getAtributos().setAtaque(padre.getAtributos().getAtaque());
 			hijo.getAtributos().setPresicion(padre.getAtributos().getPresicion());
 			hijo.getAtributos().setVida(madre.getAtributos().getVida());
@@ -18,6 +19,7 @@ public enum Cruzador {
 		@Override
 		public GuerreroEnemigo cruzar(GuerreroEnemigo padre, GuerreroEnemigo madre, String nombre) {
 			GuerreroEnemigo hijo = new GuerreroEnemigo();
+			hijo.getAtributos().setNombre(nombre);
 			hijo.getAtributos().setAtaque(madre.getAtributos().getAtaque());
 			hijo.getAtributos().setPresicion(madre.getAtributos().getPresicion());
 			hijo.getAtributos().setVida(padre.getAtributos().getVida());
@@ -33,6 +35,7 @@ public enum Cruzador {
 		@Override
 		public GuerreroEnemigo cruzar(GuerreroEnemigo padre, GuerreroEnemigo madre, String nombre) {
 			GuerreroEnemigo hijo = new GuerreroEnemigo();
+			hijo.getAtributos().setNombre(nombre);
 			hijo.getAtributos().setAtaque(padre.getAtributos().getAtaque());
 			hijo.getAtributos().setPresicion(madre.getAtributos().getPresicion());
 			hijo.getAtributos().setVida(padre.getAtributos().getVida());
@@ -47,6 +50,7 @@ public enum Cruzador {
 		@Override
 		public GuerreroEnemigo cruzar(GuerreroEnemigo padre, GuerreroEnemigo madre, String nombre) {
 			GuerreroEnemigo hijo = new GuerreroEnemigo();
+			hijo.getAtributos().setNombre(nombre);
 			hijo.getAtributos().setAtaque(madre.getAtributos().getAtaque());
 			hijo.getAtributos().setPresicion(padre.getAtributos().getPresicion());
 			hijo.getAtributos().setVida(madre.getAtributos().getVida());

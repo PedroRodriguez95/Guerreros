@@ -7,4 +7,17 @@ public class UtilidadesConsola {
 			System.out.println(" ");
 		}
 	}
+	
+	 public static void apretarEnterParaContinuar()
+	 { 
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        System.out.println("X Presione Enter Para Regresar X");
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        try
+        {
+            System.in.read();
+        }  
+        catch(Exception e)
+        {}  
+	 }
 }

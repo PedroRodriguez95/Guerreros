@@ -16,11 +16,7 @@ public class GuerreroJugador extends Guerrero {
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
-	
-	
 
-
-	
 }
 	
 	

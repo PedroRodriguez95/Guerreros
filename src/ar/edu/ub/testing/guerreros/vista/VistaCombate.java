@@ -17,7 +17,9 @@ public class VistaCombate{
 	public void mostrarMensajeEnConsola(String mensaje) {
 		consola.actualizarConsola(mensaje);
 	}
-
+	public void limpiarConsola() {
+		consola.limpiarConsola();
+	}
 	public void print(EntidadesJuego entidades) {
 		UtilidadesConsola.limpiarConsola();
 		actualizarEntidades(entidades);
