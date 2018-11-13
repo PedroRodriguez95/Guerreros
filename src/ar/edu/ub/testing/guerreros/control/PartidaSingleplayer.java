@@ -9,7 +9,7 @@ import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 
-public class PartidaSingleplayer extends Partida implements IPartida{
+public class PartidaSingleplayer extends Partida{
 	
 	private int turnoEnemigo = 0;
 	private VistaCombate vista;
@@ -40,11 +40,7 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 		vista.mostrarMensajeEnConsola(" Ganador: " + this.getEntidades().getJugador().getAtributos().getNombre());
 		vista.mostrarMensajeEnConsola(" Comenzando nivel: " + (this.getEntidades().getRound() + 1));
 		print();
-		try {
-			TimeUnit.SECONDS.sleep(5);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		wait(5);
 		entidades.siguienteRound();
 		vista = new VistaCombate(entidades);
 		turnoEnemigo = 0;
@@ -126,7 +122,7 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	public void controladorHumano() {
 		Scanner scan = new Scanner(System.in);
 		int eleccion = scan.nextInt();
-		while(!(1<= eleccion && eleccion <= 5)) {
+		while( esEleccionValida(eleccion) ) {
 			eleccion = scan.nextInt();
 		}
 		switch(eleccion) {
@@ -145,6 +141,10 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 		}
 	}
 	
+	private boolean esEleccionValida(int eleccion) {
+		return !(1<= eleccion && eleccion <= 5);
+	}
+
 	public void humanoAtaca(EntidadesJuego entidades) {
 		Scanner scan = new Scanner(System.in);
 		int eleccion = scan.nextInt();

@@ -2,6 +2,7 @@ package ar.edu.ub.testing.guerreros.control;
 import java.util.Random;
 import java.util.Scanner;
 
+import ar.edu.ub.testing.guerreros.vista.Consola;
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerros.modelo.Cruzador;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
@@ -18,7 +19,7 @@ public class LaboratorioGuerreros {
 		
 		GuerreroJugador jugador = new GuerreroJugador();
 		System.out.println("Ingresar nombre: ");       //CREA UN NUEVO JUGADOR 
-		jugador.getAtributos().setNombre(scan.next());
+		jugador.getAtributos().setNombre( Consola.pedirNombre() );
 		mutarGuerreroManual(jugador.getPuntos(), jugador);
 		return jugador;
 	}
@@ -33,19 +34,20 @@ public class LaboratorioGuerreros {
 	}	
 	public static void mutarGuerreroManual(int puntos, Guerrero guerrero){
 		while (puntos > 0) {
-			int eleccion = 0;
-			while(!(1 <= eleccion && eleccion <= 5)) {
-				UtilidadesConsola.limpiarConsola();
-				System.out.println("Puntos restantes =" + puntos);
-				System.out.println("----------------------------");
-				System.out.println("1) Ataque ->\t"     + guerrero.getAtributos().getAtaque());
-				System.out.println("2) Defensa ->\t"    + guerrero.getAtributos().getDefensa());
-				System.out.println("3) Presicion ->\t"  + guerrero.getAtributos().getPresicion());
-				System.out.println("4) Vida ->\t"       + guerrero.getAtributos().getVida());
-				System.out.println("5) Energia ->\t"    + guerrero.getAtributos().getEnergia());
-				System.out.println("Seleccionar campo a asignar");
-				eleccion = scan.nextInt();
-			}
+			
+			
+			UtilidadesConsola.limpiarConsola();
+			System.out.println("Puntos restantes =" + puntos);
+			System.out.println("----------------------------");
+			System.out.println("1) Ataque ->\t"     + guerrero.getAtributos().getAtaque());
+			System.out.println("2) Defensa ->\t"    + guerrero.getAtributos().getDefensa());
+			System.out.println("3) Presicion ->\t"  + guerrero.getAtributos().getPresicion());
+			System.out.println("4) Vida ->\t"       + guerrero.getAtributos().getVida());
+			System.out.println("5) Energia ->\t"    + guerrero.getAtributos().getEnergia());
+			System.out.println("Seleccionar campo a asignar");
+			
+			int eleccion = Consola.pedirNumero(1, 5);
+			
 			Mutador.values()[eleccion - 1 ].asignarPunto(guerrero);  //SE ASIGNA MANUALMENTE EL TIPO DE MUTACION DESDE EL ENUM MUTADOR
 			puntos--;
 		}

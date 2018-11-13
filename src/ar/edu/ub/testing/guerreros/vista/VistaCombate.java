@@ -5,12 +5,12 @@ import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 public class VistaCombate{
 	
 	Combate combate;
-	Consola consola;
+	ConsolaJuego consola;
 	Cabezera cabezera;
 	
 	public VistaCombate(EntidadesJuego entidades) {
 		combate = new Combate(entidades);
-		consola = new Consola();
+		consola = new ConsolaJuego();
 		cabezera = new CabezeraSingleplayer(entidades);
 	}
 	

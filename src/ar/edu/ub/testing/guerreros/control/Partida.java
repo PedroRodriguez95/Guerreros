@@ -2,7 +2,7 @@ package ar.edu.ub.testing.guerreros.control;
 
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 
-public class Partida {
+public abstract class Partida implements IPartida {
 	
 	EntidadesJuego entidades;
 	
