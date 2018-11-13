@@ -3,9 +3,9 @@ package ar.edu.ub.testing.guerreros.control;
 public interface IPartida {
 	
 	public boolean checkearCondicionesDeVictoria();
-	public void VictoriaJugadorUno();
-	public void VictoriaJugadorDos();
-	public void VictoriaEnemigos();
+	public void victoriaJugadorUno();
+	public void victoriaJugadorDos();
+	public void victoriaEnemigos();
 	public void jugar();
 	public void turnoJugador();
 	public void turnoEnemigo();

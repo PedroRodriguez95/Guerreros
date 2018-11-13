@@ -1,62 +1,45 @@
 package ar.edu.ub.testing.guerreros.vista;
 
-public class Consola implements IVista{
-	
-	private String     cabezera = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-	private String[][] consola = new String[4][3];
-	
-	public Consola() {
-		construirConsola();
-	}
+import java.util.Scanner;
 
-	@Override
-	public void print() {
-		System.out.println(cabezera);
-		for (String[] s : consola) {
-			System.out.print(s[0]);
-			printMensaje(s[1]);
-			System.out.print(s[2]);
-			System.out.println("");
-		}
-		System.out.println(cabezera);
-		printOpcionesHumano();
+public class Consola {
+	
+	private static Scanner scan = new Scanner( System.in );
+
+	
+	public static String pedirNombre() {
+		String nombre = getScan().next();
+		if(nombre.length() <= 15)
+			return nombre;
+		System.out.println("Error: Nombre muy largo");
+		return pedirNombre();
 	}
 	
-	public void actualizarConsola(String mensaje) {
-		consola[0][1] = consola[1][1];
-		consola[1][1] = consola[2][1];
-		consola[2][1] = consola[3][1];
- 		consola[3][1] = mensaje;
-	}
-	
-	public void construirConsola() {
-		for (int i = 0; i < consola.length; i++) {
-			consola[i][0] = "X";
-			consola[i][1] = " ";
-			consola[i][2] = "X";
+	public static Integer pedirNumero() {
+		getScan().nextLine();
+		int numero;
+		try {
+			numero = getScan().nextInt();
+			return numero;
+		}catch(Exception e) {
+			System.out.println("Error: Ingrese numeros");
+			return pedirNumero();
 		}
 	}
 	
-	public void printMensaje(String s) {
-		int cantidad = 62-(s.length() + 1);
-		System.out.print(s);
-		for(int i = 0; i <= cantidad; i++ ) {
-			System.out.print(" ");
-		}
-	}
-	
-	public void limpiarConsola() {
-		consola[0][1] = " ";
-		consola[1][1] = " ";
-		consola[2][1] = " ";
- 		consola[3][1] = " ";
-	}
-	
-	public void printOpcionesHumano() {
-		System.out.println("X  1)Atacar 2)Defender 3)Especial 4)Usar Item 5)Ver Atributos  X");
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+	public static Integer pedirNumero( int min, int max ) {
+		
+		int numero = pedirNumero();
+		if(min <= numero && numero <= max)
+			return numero;
+		System.out.println("Error: Ingrese opcion dentro del rango");
+		return pedirNumero(min,max);
+		
 	}
 
-
+	public static Scanner getScan() {
+		return scan;
+	}
+ 
 
 }

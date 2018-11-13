@@ -3,6 +3,8 @@ package ar.edu.ub.testing.guerreros.control;
 
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import ar.edu.ub.testing.guerreros.vista.MenuConsola;
@@ -15,28 +17,47 @@ public class Juego {
 	private static Scanner scan = new Scanner(System.in);
 	private EntidadesJuego entidades;
 	private Partida partida;
+	private Map<Integer,Modo_Juego> modoJuego;
 	
 
 	public Juego() {
 		entidades = new EntidadesJuego();
+ 
+		crearPartidas();
+		
+		setModoJuego(new HashMap<>());
+		
+		crearModos();
+		
 		menuPrincipal();
 	}
 	
 	
+	private void crearModos() {
+		getModoJuego().put(Modo_Juego.UN_JUGADOR.key(), Modo_Juego.UN_JUGADOR);
+		getModoJuego().put(Modo_Juego.MULTI_COOP.key(), Modo_Juego.MULTI_COOP);
+		getModoJuego().put(Modo_Juego.MULTI_VS.key(), Modo_Juego.MULTI_VS);
+	}
+
+
+	private void crearPartidas() {
+	}
+
+
 	//AL SELECCIONAR UN NUEVO JUEGO
 	public void newSinglePlayer() {
-		Modo_Juego.UN_JUGADOR.generarEntidades(entidades);
-		this.partida = new PartidaSingleplayer(entidades);
+		
+		this.setPartida(new PartidaSingleplayer(entidades));
 	}
 	
 	public void newMultiCoop() {
-		Modo_Juego.MULTI_COOP.generarEntidades(entidades);
-		this.partida = new PartidaMultiplayerCoop(entidades);
+		
+		this.setPartida(new PartidaMultiplayerCoop(entidades));
 	}
 	
 	public void newMultiVersus() {
-		Modo_Juego.MULTI_VS.generarEntidades(entidades);
-		this.partida = new PartidaMultiplayerVersus(entidades);
+		
+		this.setPartida(new PartidaMultiplayerVersus(entidades));
 	}
 	
 	public void printEntidades() {
@@ -80,6 +101,9 @@ public class Juego {
 			MenuConsola.printMenuPrincipal();
 			eleccion = scan.nextInt();
 		}
+ 
+		getModoJuego().get( eleccion ).generarEntidades(entidades);
+		
 		switch(eleccion) {
 		case 1:
 			newSinglePlayer();
@@ -96,6 +120,32 @@ public class Juego {
 		}
 		
 	}
+
+
+	public Partida getPartida() {
+		return partida;
+	}
+
+
+	public void setPartida(Partida partida) {
+		this.partida = partida;
+	}
+
+
+	public Map<Integer,Modo_Juego> getModoJuego() {
+		return modoJuego;
+	}
+
+
+	public void setModoJuego(Map<Integer,Modo_Juego> modoJuego) {
+		this.modoJuego = modoJuego;
+	}
+
+
+ 
+
+
+ 
 	
 
 }

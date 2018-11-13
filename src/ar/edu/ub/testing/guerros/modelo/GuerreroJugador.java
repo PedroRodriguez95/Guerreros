@@ -6,7 +6,7 @@ public class GuerreroJugador extends Guerrero {
 	
 	public GuerreroJugador() {
 		super();
-		this.setPuntos(100);
+		this.setPuntos(10);
 	}
 
 	public int getPuntos() {
