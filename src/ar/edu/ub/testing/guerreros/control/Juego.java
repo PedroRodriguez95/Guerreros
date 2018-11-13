@@ -3,8 +3,14 @@ package ar.edu.ub.testing.guerreros.control;
 
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
+import ar.edu.ub.testing.guerreros.control.modo.juego.IModoJuego;
+import ar.edu.ub.testing.guerreros.control.modo.juego.ModoJuegoMultiCoop;
+import ar.edu.ub.testing.guerreros.control.modo.juego.ModoJuegoMultiVersus;
+import ar.edu.ub.testing.guerreros.control.modo.juego.ModoJuegoSinglePlayer;
 import ar.edu.ub.testing.guerreros.vista.MenuConsola;
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
@@ -15,11 +21,13 @@ public class Juego {
 	private static Scanner scan = new Scanner(System.in);
 	private EntidadesJuego entidades;
 	private Partida partida;
+	private Map <Modo_Juego,IModoJuego> modoJuego;
 	
 
 	public Juego() {
 		entidades = new EntidadesJuego();
 		menuPrincipal();
+		setModoJuego(new HashMap<>());
 	}
 	
 	
@@ -95,6 +103,24 @@ public class Juego {
 			menuPrincipal();
 		}
 		
+	}
+
+
+	public Map <Modo_Juego,IModoJuego> getModoJuego() {
+		return modoJuego;
+	}
+
+
+	private void setModoJuego(Map <Modo_Juego,IModoJuego> modoJuego) {
+		this.modoJuego = modoJuego;
+		setModos();
+		
+	}
+
+	private void setModos() {
+		getModoJuego().put(Modo_Juego.UN_JUGADOR, new ModoJuegoSinglePlayer());
+		getModoJuego().put(Modo_Juego.MULTI_COOP, new ModoJuegoMultiCoop());
+		getModoJuego().put(Modo_Juego.MULTI_VS, new ModoJuegoMultiVersus());
 	}
 	
 

@@ -24,11 +24,11 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	@Override
 	public boolean checkearCondicionesDeVictoria() {
 		if(this.getEntidades().checkJugadorUnoMuerto()) {
-			this.VictoriaEnemigos();
+			this.victoriaEnemigos();
 			return true;
 		}
 		if(this.getEntidades().checkEnemigosMuertos()) {
-			this.VictoriaJugadorUno();
+			this.victoriaJugadorUno();
 			return true;
 		}
 		return false;
@@ -36,7 +36,7 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	}
 
 	@Override
-	public void VictoriaJugadorUno() {
+	public void victoriaJugadorUno() {
 		vista.mostrarMensajeEnConsola(" Ganador: " + this.getEntidades().getJugador().getAtributos().getNombre());
 		vista.mostrarMensajeEnConsola(" Comenzando nivel: " + (this.getEntidades().getRound() + 1));
 		print();
@@ -53,11 +53,11 @@ public class PartidaSingleplayer extends Partida implements IPartida{
 	}
 
 	@Override
-	public void VictoriaJugadorDos() {
+	public void victoriaJugadorDos() {
 	}
 
 	@Override
-	public void VictoriaEnemigos() {
+	public void victoriaEnemigos() {
 		vista.mostrarMensajeEnConsola("Jugador derrotado por generacion #" + this.getEntidades().getRound());
 		print();
 		wait(5);
