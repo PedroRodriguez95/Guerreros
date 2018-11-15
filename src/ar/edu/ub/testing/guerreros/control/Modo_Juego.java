@@ -32,7 +32,7 @@ public enum Modo_Juego {
 
 		@Override
 		public Integer key() {
-			return 2;
+			return 3;
 		}
 		
 	},
@@ -42,14 +42,14 @@ public enum Modo_Juego {
 			entidades.setGuerrerosEnemigos(new GuerreroEnemigo[8]);
 			LaboratorioGuerreros.generarGuerrerosEnemigos(entidades.getGuerrerosEnemigos());
 			entidades.setJugador(LaboratorioGuerreros.nuevoJugador());
-			entidades.setJugador(LaboratorioGuerreros.nuevoJugador());
+			entidades.setJugador2(LaboratorioGuerreros.nuevoJugador());
 			entidades.setInteligenciaBot(new AiMultiplayer());
 			return entidades;
 		}
 
 		@Override
 		public Integer key() {
-			return 3;
+			return 2;
 		}
 
 	};

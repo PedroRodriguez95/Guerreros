@@ -4,7 +4,6 @@ public class Cabezera implements IVista{
 
 	@Override
 	public void print() {
-		// TODO Auto-generated method stub
 		
 	}
 	

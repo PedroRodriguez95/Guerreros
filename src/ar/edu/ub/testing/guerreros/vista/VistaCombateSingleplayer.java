@@ -2,14 +2,14 @@ package ar.edu.ub.testing.guerreros.vista;
 
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 
-public class VistaCombate{
+public class VistaCombateSingleplayer{
 	
-	Combate combate;
-	ConsolaJuego consola;
-	Cabezera cabezera;
+	private CombateSingleplayer combate;
+	private ConsolaJuego consola;
+	private Cabezera cabezera;
 	
-	public VistaCombate(EntidadesJuego entidades) {
-		combate = new Combate(entidades);
+	public VistaCombateSingleplayer(EntidadesJuego entidades) {
+		combate = new CombateSingleplayer(entidades);
 		consola = new ConsolaJuego();
 		cabezera = new CabezeraSingleplayer(entidades);
 	}
@@ -30,7 +30,7 @@ public class VistaCombate{
 	}
 	
 	public void actualizarEntidades(EntidadesJuego entidades) {
-	combate = new Combate(entidades);
+	combate = new CombateSingleplayer(entidades);
 	cabezera = new CabezeraSingleplayer(entidades);
 	}
 }

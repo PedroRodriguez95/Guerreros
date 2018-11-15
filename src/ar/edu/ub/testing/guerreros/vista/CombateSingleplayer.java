@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 
-public class Combate implements IVista{
+public class CombateSingleplayer implements IVista{
 	
 	private ArrayList<String[][]> bloques = new ArrayList<>();
 	private String[][]            bloqueUno = new String[4][64];
@@ -13,7 +13,7 @@ public class Combate implements IVista{
 	private String[][]            bloqueTres = new String[4][64];
 	private String[][]            bloqueCuatro = new String[4][64];
 	
-	public Combate(EntidadesJuego entidades) {
+	public CombateSingleplayer(EntidadesJuego entidades) {
 		generarBloques(entidades);
 	}
 	

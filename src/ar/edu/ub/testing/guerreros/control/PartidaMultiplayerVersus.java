@@ -34,7 +34,7 @@ public class PartidaMultiplayerVersus extends Partida {
 	}
 
 	@Override
-	public void jugar() {
+	public void Jugar() {
 		// TODO Auto-generated method stub
 		
 	}

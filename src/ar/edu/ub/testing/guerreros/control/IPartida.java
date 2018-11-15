@@ -6,7 +6,7 @@ public interface IPartida {
 	public void victoriaJugadorUno();
 	public void victoriaJugadorDos();
 	public void victoriaEnemigos();
-	public void jugar();
+	public void Jugar();
 	public void turnoJugador();
 	public void turnoEnemigo();
 	public void terminarPartida();

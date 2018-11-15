@@ -4,21 +4,22 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
-import ar.edu.ub.testing.guerreros.vista.VistaCombate;
+import ar.edu.ub.testing.guerreros.vista.VistaCombateSingleplayer;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
+import ar.edu.ub.testing.guerros.modelo.GuerreroJugador;
 
 public class PartidaSingleplayer extends Partida{
 	
 	private int turnoEnemigo = 0;
-	private VistaCombate vista;
+	private VistaCombateSingleplayer vista;
 
 	public PartidaSingleplayer(EntidadesJuego entidadesExternas) {
 		super(entidadesExternas);
-		vista = new VistaCombate(entidadesExternas);
+		vista = new VistaCombateSingleplayer(entidadesExternas);
 		print();
-		jugar();
+		Jugar();
 	}
 
 	@Override
@@ -42,10 +43,10 @@ public class PartidaSingleplayer extends Partida{
 		print();
 		wait(5);
 		entidades.siguienteRound();
-		vista = new VistaCombate(entidades);
+		vista = new VistaCombateSingleplayer(entidades);
 		turnoEnemigo = 0;
 		checkearCondicionesDeVictoria();
-		jugar();
+		Jugar();
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class PartidaSingleplayer extends Partida{
 
 	}
 	@Override
-	public void jugar() {
+	public void Jugar() {
 		turnoJugador();
 		}
 
