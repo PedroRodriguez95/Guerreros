@@ -100,7 +100,11 @@ public class ControladorHumano {
 	}
 	
 	public void descansar() {
+		if(humano.getAtributos().getEnergiaAux()<(humano.getAtributos().getEnergia() + 4)) {
+			humano.getAtributos().setEnergia(humano.getAtributos().getEnergiaAux());
+		}else {
 		humano.getAtributos().setEnergia(humano.getAtributos().getEnergia() + 4);
+		}
 		vista.mostrarMensajeEnConsola( " " + humano.getAtributos().getNombre() + " descansa y recupera 4 puntos de energia" );
 		vista.print(entidades);
 	}

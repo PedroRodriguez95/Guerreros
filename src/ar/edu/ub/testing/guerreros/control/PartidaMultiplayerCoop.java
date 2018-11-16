@@ -5,9 +5,11 @@ import java.util.concurrent.TimeUnit;
 
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerreros.vista.VistaCombateMultiplayerCoop;
+import ar.edu.ub.testing.guerreros.vista.VistaTiendaYEvolucion;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
+import ar.edu.ub.testing.guerros.modelo.GuerreroJugador;
 
 public class PartidaMultiplayerCoop extends Partida {
 	
@@ -37,7 +39,7 @@ public class PartidaMultiplayerCoop extends Partida {
 	
 	public void victoriaJugadores() {
 		desactivarPasivos();
-		vista.mostrarMensajeEnConsola(" Ganadores: " + this.getEntidades().getJugador().getAtributos().getNombre() + " " + this.getEntidades().getJugador2().getAtributos().getNombre());
+		vista.mostrarMensajeEnConsola(" Ganadores: " + this.getEntidades().getJugador().getAtributos().getNombre() + " y " + this.getEntidades().getJugador2().getAtributos().getNombre());
 		vista.mostrarMensajeEnConsola(" Comenzando nivel: " + (this.getEntidades().getRound() + 1));
 		print();
 		wait(5);
@@ -45,6 +47,10 @@ public class PartidaMultiplayerCoop extends Partida {
 		vista = new VistaCombateMultiplayerCoop(entidades);
 		turnoEnemigo = 0;
 		checkearCondicionesDeVictoria();
+		entidades.getJugador().setPuntos(entidades.getJugador().getPuntos() + 3);
+		((GuerreroJugador) entidades.getJugador2()).setPuntos(((GuerreroJugador) entidades.getJugador2()).getPuntos() + 3);
+		new VistaTiendaYEvolucion(entidades.getJugador(), entidades);
+		new VistaTiendaYEvolucion((GuerreroJugador) entidades.getJugador2(), entidades);
 		Jugar();
 	}
 
@@ -67,11 +73,6 @@ public class PartidaMultiplayerCoop extends Partida {
 	@Override
 	public void Jugar() {
 		activarPasivos();
-		entidades.getJugador().getAtributos().setEnergiaMax(entidades.getJugador().getAtributos().getEnergia());
-		entidades.getJugador2().getAtributos().setEnergiaMax(entidades.getJugador2().getAtributos().getEnergia());
-		for (GuerreroEnemigo g : entidades.getGuerrerosEnemigos()) {
-			g.getAtributos().setEnergiaMax(g.getAtributos().getEnergia());
-		}
 		turnoJugador();
 		}
 

@@ -9,9 +9,11 @@ public class VistaCombateSingleplayer extends Vista{
 	private Cabezera cabezera;
 	
 	public VistaCombateSingleplayer(EntidadesJuego entidades) {
+		
 		combate = new CombateSingleplayer(entidades);
 		consola = new ConsolaJuego();
 		cabezera = new CabezeraSingleplayer(entidades);
+		
 	}
 	
 	public void mostrarMensajeEnConsola(String mensaje) {

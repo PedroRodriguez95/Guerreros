@@ -117,9 +117,11 @@ public class Juego {
 			break;
 		case 2:
 			System.out.println("A implementar");
+			menuPrincipal();
 			break;
 		case 3: 
 			System.out.println("A implementar");
+			menuPrincipal();
 			break;
 		case 4:
 			break;

@@ -61,8 +61,6 @@ public class PartidaMultiplayerVersus extends Partida {
 	@Override
 	public void Jugar() {
 		activarPasivos();
-		entidades.getJugador().getAtributos().setEnergiaMax(entidades.getJugador().getAtributos().getEnergia());
-		entidades.getJugador2().getAtributos().setEnergiaMax(entidades.getJugador2().getAtributos().getEnergia());
 		turnoJugador();
 	}
 

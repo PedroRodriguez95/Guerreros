@@ -2,6 +2,7 @@ package ar.edu.ub.testing.guerros.modelo;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import ar.edu.ub.testing.guerros.modelo.items.Item;
 import ar.edu.ub.testing.guerros.modelo.items.ItemActivo;
@@ -10,13 +11,13 @@ import ar.edu.ub.testing.guerros.modelo.items.ItemPasivo;
 
 public abstract class Guerrero {
 	
-
+	static Random  rand = new Random();
 	private Atributos atributos;
 	private Cuerpo    cuerpo;
 	private Item[]    items;
 	
 
-	public Guerrero() {
+	public Guerrero(){
 		this.atributos = new Atributos();
 		this.cuerpo = new Cuerpo();
 		this.setItems(new Item[2]);
@@ -67,35 +68,40 @@ public abstract class Guerrero {
 		}
 	}
 	public void atacar(Guerrero enemigo) {
-		enemigo.dañar(this.getAtributos().getAtaque() - (enemigo.getAtributos().getDefensa()/2));		
+		int chanceCritico = 1 + rand.nextInt((100 - 1) + 1);
+		if (1 <= chanceCritico && chanceCritico <= this.getAtributos().getPresicion() ) {
+			enemigo.dañar((this.getAtributos().getAtaque()*2) - (enemigo.getAtributos().getDefensa()/2));
+		}else {
+		enemigo.dañar(this.getAtributos().getAtaque() - (enemigo.getAtributos().getDefensa()/2));	
+		}
 	}
 	
 	public ArrayList<ItemPasivo> getItemsPasivos(){
 		
 		ArrayList<ItemPasivo> itemsPasivos = new ArrayList<>();
-		if (!(this.getItems()[0] == null) && ItemActivo.class.isAssignableFrom(this.getItems()[0].getClass())) {
+		if (this.getItems()[0] != null && ItemActivo.class.isAssignableFrom(this.getItems()[0].getClass())) {
 			itemsPasivos.add((ItemPasivo)getItems()[0]);
 		}
-		if (!(this.getItems()[1] == null) && ItemActivo.class.isAssignableFrom(this.getItems()[1].getClass())) {
+		if (this.getItems()[1] != null && ItemActivo.class.isAssignableFrom(this.getItems()[1].getClass())) {
 			itemsPasivos.add((ItemPasivo)getItems()[1]);
 		}
 		return itemsPasivos;
 	}
 	
 	public void desactivarItemsPasivos(){
-		if (!(this.getItems()[0] == null) && ItemPasivo.class.isAssignableFrom(this.getItems()[0].getClass())) {
+		if (this.getItems()[0] != null && ItemPasivo.class.isAssignableFrom(this.getItems()[0].getClass())) {
 			getItems()[0].desactivarAccion();
 		}
-		if (!(this.getItems()[1] == null) && ItemPasivo.class.isAssignableFrom(this.getItems()[1].getClass())) {
+		if (this.getItems()[1] != null && ItemPasivo.class.isAssignableFrom(this.getItems()[1].getClass())) {
 			getItems()[1].desactivarAccion();
 		}
 	}
 	public void activarItemsPasivos(){
 		ArrayList<ItemPasivo> itemsPasivos = new ArrayList<>();
-		if (!(this.getItems()[0] == null) && ItemPasivo.class.isAssignableFrom(this.getItems()[0].getClass())) {
+		if (this.getItems()[0] != null && ItemPasivo.class.isAssignableFrom(this.getItems()[0].getClass())) {
 			itemsPasivos.add((ItemPasivo)getItems()[0]);
 		}
-		if (!(this.getItems()[1] == null) && ItemPasivo.class.isAssignableFrom(this.getItems()[1].getClass())) {
+		if (this.getItems()[1] != null  && ItemPasivo.class.isAssignableFrom(this.getItems()[1].getClass())) {
 			itemsPasivos.add((ItemPasivo)getItems()[1]);
 		}
 		

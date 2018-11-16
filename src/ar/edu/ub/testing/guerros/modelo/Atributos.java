@@ -10,7 +10,6 @@ public class Atributos {
 	private int     vida;
 	private int     energia;
 	private int     energiaAux;
-	private int     energiaMax;
 	
 	public Atributos() {
 		
@@ -20,8 +19,7 @@ public class Atributos {
 		this.vidaAux = 1;
 		this.vida = 1;
 		this.energia = 1;
-		this.energiaAux = 1;
-		this.energiaMax = 999;
+		this.setEnergiaAux(1);
 	}
 	
 	public String getNombre() {
@@ -65,22 +63,27 @@ public class Atributos {
 		return this.vidaAux;
 	}
 	public void setEnergia(int energia) {
-		if (energia >= energiaMax ) {
-			this.energia = energiaMax;
-			this.energiaAux = energiaMax;
-		}else {
+			if (energia >= this.getEnergiaAux()) {
+				this.setEnergiaAux(energia);
+			}
 			this.energia = energia;
 		}
-	}
+	
 	
 	public void resetVida() {
 		this.vida = this.vidaAux;
-		this.energia = this.energiaAux;
+		this.energia = this.getEnergiaAux();
 	}
-	
-	public void setEnergiaMax(int energia) {
-		this.energiaMax = energia;
+
+	public int getEnergiaAux() {
+		return energiaAux;
 	}
+
+	public void setEnergiaAux(int energiaAux) {
+		this.energiaAux = energiaAux;
+	}
+
 	
+
 
 }

@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerreros.vista.VistaCombateSingleplayer;
+import ar.edu.ub.testing.guerreros.vista.VistaTiendaYEvolucion;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
@@ -45,6 +46,10 @@ public class PartidaSingleplayer extends Partida{
 		vista = new VistaCombateSingleplayer(entidades);
 		turnoEnemigo = 0;
 		checkearCondicionesDeVictoria();
+		System.out.println(entidades.getJugador().getPuntos());
+		entidades.getJugador().setPuntos(entidades.getJugador().getPuntos() + 3);
+		System.out.println(entidades.getJugador().getPuntos());
+		new VistaTiendaYEvolucion(entidades.getJugador(), entidades);
 		Jugar();
 	}
 
@@ -63,10 +68,6 @@ public class PartidaSingleplayer extends Partida{
 	@Override
 	public void Jugar() {
 		activarPasivos();
-		entidades.getJugador().getAtributos().setEnergiaMax(entidades.getJugador().getAtributos().getEnergia());
-		for (GuerreroEnemigo g : entidades.getGuerrerosEnemigos()) {
-			g.getAtributos().setEnergiaMax(g.getAtributos().getEnergia());
-		}
 		turnoJugador();
 		}
 

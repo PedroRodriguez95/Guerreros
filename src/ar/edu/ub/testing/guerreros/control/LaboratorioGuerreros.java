@@ -25,6 +25,7 @@ public class LaboratorioGuerreros {
 		System.out.println("X         Ingresar Nombre           X");
 		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		jugador.getAtributos().setNombre( Consola.pedirNombre() );
+		jugador.setPuntos(50);
 		new VistaTiendaYEvolucion(jugador,entidades);
 		return jugador;
 	}
@@ -37,7 +38,7 @@ public class LaboratorioGuerreros {
 			enemigos[i] = guerrero;
 		}
 	}	
-	public static void mutarGuerreroManual(int puntos, Guerrero guerrero, EntidadesJuego entidades){
+	public static void mutarGuerreroManual(int puntos, GuerreroJugador guerrero, EntidadesJuego entidades){
 		while (puntos > 0) {
 			
 			
@@ -61,6 +62,7 @@ public class LaboratorioGuerreros {
 			
 			Mutador.values()[eleccion - 1 ].asignarPunto(guerrero);  //SE ASIGNA MANUALMENTE EL TIPO DE MUTACION DESDE EL ENUM MUTADOR
 			puntos--;
+			guerrero.setPuntos(puntos);
 		}
 	}
 	

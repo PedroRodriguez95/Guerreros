@@ -136,9 +136,9 @@ public class VistaTiendaYEvolucion {
 	
 	private String printNombreItem(int item) {
 		
-		String s  ="X" + (item+1) + ")" + guerrero.getItems()[item].getNombre();
+		String s  ="X " + (item+1) + ")" + guerrero.getItems()[item].getNombre();
 		int cantidadEspacios = 37 - s.length();
-		for(int i = 0; i<cantidadEspacios-3;i++) {
+		for(int i = 0; i<cantidadEspacios-2;i++) {
 			s += " ";
 		}
 		s += " X";
