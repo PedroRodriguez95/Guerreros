@@ -1,5 +1,6 @@
 package ar.edu.ub.testing.guerros.modelo;
 
+
 public abstract class Guerrero {
 	
 
