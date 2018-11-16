@@ -39,6 +39,7 @@ public class ControladorHumano {
 			break;
 		case 4:
 			vista.print(entidades);
+			menuUsarItems(humano,entidades);
 			break;
 		case 5:
 			break;
@@ -53,8 +54,19 @@ public class ControladorHumano {
 		atacar(jugador, enemigos[eleccion - 1]);
 	}
 	
-	public void menuUsaritems(Guerrero jugador, EntidadesJuego entidades) {
-		ArrayList<ItemActivo> items = new ArrayList<>();
+	public void menuUsarItems(Guerrero jugador, EntidadesJuego entidades) {
+		ArrayList<ItemActivo> items = jugador.getItemsActivos();
+		opciones.printPanelItems(items);
+		if(items.isEmpty()) {
+			vista.print(entidades);
+			menuPrincipal();
+		}else {
+			int eleccion = Consola.pedirNumero(1, items.size());
+			vista.print(entidades);
+			opciones.printPanelAtacar();
+			int eleccionObjectivo = Consola.pedirNumero(1, entidades.getGuerrerosEnemigos().length);
+			vista.equals(items.get(eleccion-1).ejecutarAccionActiva(entidades, eleccionObjectivo-1));
+		}
 	}
 	
 	public void atacar(Guerrero atacante, Guerrero atacado){

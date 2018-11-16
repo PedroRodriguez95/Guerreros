@@ -37,8 +37,7 @@ public class OpcionesHumano {
 		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 	}
 	
-	public void printPanelItems() {
-		ArrayList<ItemActivo> itemsActivos = humano.getItemsActivos();
+	public void printPanelItems(ArrayList<ItemActivo> itemsActivos) {
 		if(itemsActivos.isEmpty()) {
 			System.out.println("X  No se tienen items activos                                  X");
 			System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
@@ -46,13 +45,14 @@ public class OpcionesHumano {
 		}else {
 			String items = "X ";
 			for (int i = 1; i <= itemsActivos.size();i++) {
-				items += i + ")" + itemsActivos.get(i).getNombre() + " ";
+				items += i + ")" + itemsActivos.get(i-1).getNombre() + " ";
 			}
 			int cantidadEspacios = 64 - items.length();
 			for (int i = 0; i < cantidadEspacios-2; i++) {
 				items += " ";
 			}
 			items += " X";
+			System.out.println(items);
 			System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		}
 	}
