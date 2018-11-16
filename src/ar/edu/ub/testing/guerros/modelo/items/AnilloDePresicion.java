@@ -21,7 +21,7 @@ public class AnilloDePresicion extends ItemPasivo{
 	}
 
 	@Override
-	public void desactivarAccionPasiva() {
+	public void desactivarAccion() {
 		jugador.getAtributos().setPresicion(this.getAtributoOriginal());
 		
 	}

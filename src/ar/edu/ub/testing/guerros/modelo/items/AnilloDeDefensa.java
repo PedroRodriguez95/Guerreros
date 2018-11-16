@@ -21,7 +21,7 @@ public class AnilloDeDefensa extends ItemPasivo{
 	}
 
 	@Override
-	public void desactivarAccionPasiva() {
+	public void desactivarAccion() {
 		jugador.getAtributos().setDefensa(this.getAtributoOriginal());
 		
 	}

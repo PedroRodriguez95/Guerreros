@@ -6,6 +6,8 @@ public abstract class Item {
 	private String descripcion;
 	private int    precio;
 	private int    atributoOriginal;
+	
+	public abstract void desactivarAccion();
 
 	public String getNombre() {
 		return nombre;

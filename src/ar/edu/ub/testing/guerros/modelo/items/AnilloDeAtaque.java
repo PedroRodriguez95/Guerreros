@@ -21,7 +21,7 @@ public class AnilloDeAtaque extends ItemPasivo{
 	}
 
 	@Override
-	public void desactivarAccionPasiva() {
+	public void desactivarAccion() {
 		jugador.getAtributos().setAtaque(this.getAtributoOriginal());
 		
 	}

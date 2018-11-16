@@ -1,6 +1,7 @@
 package ar.edu.ub.testing.guerreros.control;
 
 import ar.edu.ub.testing.guerreros.vista.Consola;
+import ar.edu.ub.testing.guerreros.vista.OpcionesHumano;
 import ar.edu.ub.testing.guerreros.vista.Vista;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
@@ -11,39 +12,18 @@ public class ControladorHumano {
 	private Guerrero humano;
 	private EntidadesJuego entidades;
 	private Vista vista;
+	private OpcionesHumano opciones;
 	
 	public ControladorHumano(Guerrero jugador,EntidadesJuego entidades, Vista vista) {
 		this.humano = jugador;
 		this.entidades = entidades;
 		this.vista = vista;
+		this.opciones = new OpcionesHumano(jugador);
 		menuPrincipal();
 	}
-	
-	public void printOpcionesHumano() {
-		printCabezera();
-		System.out.println("X  1)Atacar 2)Defender 3)Especial 4)Usar Item 5)Ver Atributos  X");
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-	}
-	
-	public void printCabezera() {
-		String datos = "X Turno: " + humano.getAtributos().getNombre() + "              Energia: " + humano.getAtributos().getEnergia();
-		int cantidadEspacios = 64 - datos.length();
-		for (int i = 0; i < cantidadEspacios-2; i++) {
-			datos += " ";
-		}
-		datos += " X";
-		System.out.println(datos);
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-	}
-	
-	public void printPanelAtacar() {
-		printCabezera();
-		System.out.println("X  Seleccione objetivo                                         X");
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-	}
-	
+
 	public void menuPrincipal() {
-		printOpcionesHumano();
+		opciones.printOpcionesHumano();
 		int eleccion = Consola.pedirNumero(1, 5);
 		switch(eleccion) {
 		case 1:
@@ -64,7 +44,7 @@ public class ControladorHumano {
 	
 	
 	public void menuAtacar(Guerrero jugador, GuerreroEnemigo[] enemigos) {
-		printPanelAtacar();
+		opciones.printPanelAtacar();
 		int eleccion = Consola.pedirNumero(1, enemigos.length);
 		atacar(jugador, enemigos[eleccion - 1]);
 	}

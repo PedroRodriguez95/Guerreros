@@ -1,15 +1,23 @@
 package ar.edu.ub.testing.guerros.modelo;
 
+import java.util.ArrayList;
+
+import ar.edu.ub.testing.guerros.modelo.items.Item;
+import ar.edu.ub.testing.guerros.modelo.items.ItemActivo;
+import ar.edu.ub.testing.guerros.modelo.items.ItemPasivo;
+
 public abstract class Guerrero {
 	
 
 	private Atributos atributos;
 	private Cuerpo    cuerpo;
+	private Item[]    items;
 	
 
 	public Guerrero() {
 		this.atributos = new Atributos();
 		this.cuerpo = new Cuerpo();
+		this.items = new Item[2];
 	}
 
 	public void dañar(int daño) {
@@ -58,6 +66,40 @@ public abstract class Guerrero {
 	}
 	public void atacar(Guerrero enemigo) {
 		enemigo.dañar(this.getAtributos().getAtaque() - (enemigo.getAtributos().getDefensa()/2));		
+	}
+	
+	public ArrayList<ItemPasivo> getItemsPasivos(){
+		
+		ArrayList<ItemPasivo> itemsPasivos = new ArrayList<>();
+		if (!(this.items[0] == null) && ItemActivo.class.isAssignableFrom(this.items[0].getClass())) {
+			itemsPasivos.add((ItemPasivo)items[0]);
+		}
+		if (!(this.items[1] == null) && ItemActivo.class.isAssignableFrom(this.items[1].getClass())) {
+			itemsPasivos.add((ItemPasivo)items[1]);
+		}
+		return itemsPasivos;
+	}
+	
+	public void desactivarItemsPasivos(){
+		if (!(this.items[0] == null) && ItemActivo.class.isAssignableFrom(this.items[0].getClass())) {
+			items[0].desactivarAccion();
+		}
+		if (!(this.items[1] == null) && ItemActivo.class.isAssignableFrom(this.items[1].getClass())) {
+			items[1].desactivarAccion();
+		}
+	}
+	public void activarItemsPasivos(){
+		ArrayList<ItemPasivo> itemsPasivos = new ArrayList<>();
+		if (!(this.items[0] == null) && ItemActivo.class.isAssignableFrom(this.items[0].getClass())) {
+			itemsPasivos.add((ItemPasivo)items[0]);
+		}
+		if (!(this.items[1] == null) && ItemActivo.class.isAssignableFrom(this.items[1].getClass())) {
+			itemsPasivos.add((ItemPasivo)items[1]);
+		}
+		
+		for (ItemPasivo i : itemsPasivos) {
+			i.ejecutarAccionPasiva();
+		}
 	}
 }
 
