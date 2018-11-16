@@ -4,21 +4,32 @@ public abstract class Item {
 	
 	private String nombre;
 	private String descripcion;
-	
-	public abstract void ejecutarAccion();
-	public abstract void desactivarAccion();
-	
+	private int    precio;
+	private int    atributoOriginal;
+
 	public String getNombre() {
 		return nombre;
 	}
-	public void setNombre(String nombre) {
+	protected void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	public String getDescripcion() {
 		return descripcion;
 	}
-	public void setDescripcion(String descripcion) {
+	protected void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public int getPrecio() {
+		return precio;
+	}
+	protected void setPrecio(int precio) {
+		this.precio = precio;
+	}
+	public int getAtributoOriginal() {
+		return atributoOriginal;
+	}
+	protected void setAtributoOriginal(int atributoOriginal) {
+		this.atributoOriginal = atributoOriginal;
 	}
 	
 	
