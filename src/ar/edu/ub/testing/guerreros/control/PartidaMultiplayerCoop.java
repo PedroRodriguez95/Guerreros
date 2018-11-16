@@ -36,6 +36,7 @@ public class PartidaMultiplayerCoop extends Partida {
 	}
 	
 	public void victoriaJugadores() {
+		desactivarPasivos();
 		vista.mostrarMensajeEnConsola(" Ganadores: " + this.getEntidades().getJugador().getAtributos().getNombre() + " " + this.getEntidades().getJugador2().getAtributos().getNombre());
 		vista.mostrarMensajeEnConsola(" Comenzando nivel: " + (this.getEntidades().getRound() + 1));
 		print();
@@ -65,6 +66,12 @@ public class PartidaMultiplayerCoop extends Partida {
 
 	@Override
 	public void Jugar() {
+		activarPasivos();
+		entidades.getJugador().getAtributos().setEnergiaMax(entidades.getJugador().getAtributos().getEnergia());
+		entidades.getJugador2().getAtributos().setEnergiaMax(entidades.getJugador2().getAtributos().getEnergia());
+		for (GuerreroEnemigo g : entidades.getGuerrerosEnemigos()) {
+			g.getAtributos().setEnergiaMax(g.getAtributos().getEnergia());
+		}
 		turnoJugador();
 		}
 
@@ -77,7 +84,7 @@ public class PartidaMultiplayerCoop extends Partida {
 			if(this.getEntidades().getJugador().murio()) {
 				turnoJugador++;
 			}else {
-				controladorHumano(this.getEntidades().getJugador());
+				new ControladorHumano(this.getEntidades().getJugador(), entidades, vista);
 			}
 		}
 		if (this.turnoJugador == 2) {
@@ -85,10 +92,11 @@ public class PartidaMultiplayerCoop extends Partida {
 				turnoJugador = 1;
 				turnoJugador();
 			}else {
-				controladorHumano(this.getEntidades().getJugador2());
+				new ControladorHumano(this.getEntidades().getJugador2(), entidades, vista);
 			}
 		}
 		this.turnoJugador++;
+		
 		if(this.turnoJugador > 2) {
 			this.turnoJugador = 1;
 		}
@@ -124,8 +132,10 @@ public class PartidaMultiplayerCoop extends Partida {
 			turno = 0;
 		}
 		int siguienteTurno = turno;
-			while (entidades.getGuerrerosEnemigos()[siguienteTurno].murio()) {
-				
+			while (entidades.getGuerrerosEnemigos()[siguienteTurno].checkEnemigoNoDisponible()) {
+				if(entidades.getGuerrerosEnemigos()[siguienteTurno].checkNocked()) {
+					vista.mostrarMensajeEnConsola(" " + entidades.getGuerrerosEnemigos()[siguienteTurno].getAtributos().getNombre() + " se encuentra incapacitado por " + entidades.getGuerrerosEnemigos()[siguienteTurno].getContTurnosPausados() + " turnos ");
+				}
 				if (siguienteTurno == 7) {
 					siguienteTurno = 0;
 					
@@ -138,7 +148,7 @@ public class PartidaMultiplayerCoop extends Partida {
 		return siguienteTurno;
 	}
 	
-	public void controladorHumano(Guerrero guerrero) {
+	/*public void controladorHumano(Guerrero guerrero) {
 		Scanner scan = new Scanner(System.in);
 		int eleccion = scan.nextInt();
 		while( esEleccionValida(eleccion) ) {
@@ -171,7 +181,7 @@ public class PartidaMultiplayerCoop extends Partida {
 			eleccion = scan.nextInt();
 		}
 		atacar(guerrero,entidades.getGuerrerosEnemigos()[eleccion-1]);
-	}
+	}*/
 	public void print() {
 		vista.print(entidades);
 	}

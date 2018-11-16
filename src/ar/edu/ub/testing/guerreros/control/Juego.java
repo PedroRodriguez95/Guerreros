@@ -79,16 +79,19 @@ public class Juego {
 	//AL SELECCIONAR UN NUEVO JUEGO
 	public void newSinglePlayer() {
 		
+		UtilidadesConsola.limpiarConsola();
 		this.setPartida(new PartidaSingleplayer(entidades));
 	}
 	
 	public void newMultiCoop() {
 		
+		UtilidadesConsola.limpiarConsola();
 		this.setPartida(new PartidaMultiplayerCoop(entidades));
 	}
 	
 	public void newMultiVersus() {
 		
+		UtilidadesConsola.limpiarConsola();
 		this.setPartida(new PartidaMultiplayerVersus(entidades));
 	}
 	

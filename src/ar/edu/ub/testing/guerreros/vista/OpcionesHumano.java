@@ -16,7 +16,7 @@ public class OpcionesHumano {
 	
 	public void printOpcionesHumano() {
 		printCabezera(humano);
-		System.out.println("X  1)Atacar 2)Defender 3)Especial 4)Usar Item 5)Ver Atributos  X");
+		System.out.println("X   1)Atacar  2)Defender  3)Habilidad   4)Items   5)Descansar  X");
 		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 	}
 	
@@ -35,6 +35,13 @@ public class OpcionesHumano {
 		printCabezera(humano);
 		System.out.println("X  Seleccione objetivo                                         X");
 		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+	}
+	
+	public void printErrorEnergiaInsuficiente() {
+		printCabezera(humano);
+		System.out.println("X  Tu energia es insuficiente para realizar esa accion         X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		wait(3);
 	}
 	
 	public void printPanelItems(ArrayList<ItemActivo> itemsActivos) {

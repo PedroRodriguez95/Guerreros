@@ -26,12 +26,19 @@ public class ControladorHumano {
 	}
 
 	public void menuPrincipal() {
+		vista.print(entidades);
 		opciones.printOpcionesHumano();
 		int eleccion = Consola.pedirNumero(1, 5);
 		switch(eleccion) {
 		case 1:
 			vista.print(entidades);
-			menuAtacar(this.humano,entidades.getGuerrerosEnemigos());
+			if (checkEnergiaSuficiente(humano, 2)) {
+				menuAtacar(this.humano,entidades.getGuerrerosEnemigos());
+			}else {
+				vista.print(entidades);
+				opciones.printErrorEnergiaInsuficiente();
+				menuPrincipal();
+			}
 			break;
 		case 2:
 			 break;
@@ -42,12 +49,10 @@ public class ControladorHumano {
 			menuUsarItems(humano,entidades);
 			break;
 		case 5:
+			descansar();
 			break;
 		}
 	}
-	
-	
-	
 	public void menuAtacar(Guerrero jugador, GuerreroEnemigo[] enemigos) {
 		opciones.printPanelAtacar();
 		int eleccion = Consola.pedirNumero(1, enemigos.length);
@@ -62,10 +67,16 @@ public class ControladorHumano {
 			menuPrincipal();
 		}else {
 			int eleccion = Consola.pedirNumero(1, items.size());
+			if (checkEnergiaSuficiente(humano,items.get(eleccion-1).getEnergiaNecesaria())) {
 			vista.print(entidades);
 			opciones.printPanelAtacar();
 			int eleccionObjectivo = Consola.pedirNumero(1, entidades.getGuerrerosEnemigos().length);
-			vista.equals(items.get(eleccion-1).ejecutarAccionActiva(entidades, eleccionObjectivo-1));
+			vista.mostrarMensajeEnConsola(items.get(eleccion-1).ejecutarAccionActiva(entidades, eleccionObjectivo-1));
+			}else {
+				vista.print(entidades);
+				opciones.printErrorEnergiaInsuficiente();
+				menuPrincipal();
+			}
 		}
 	}
 	
@@ -77,6 +88,21 @@ public class ControladorHumano {
 		atacante.atacar(atacado);
 		vista.mostrarMensajeEnConsola(" " + atacante.getAtributos().getNombre() + " ataco a " + atacado.getAtributos().getNombre() + " por " + daño + " puntos de daño");
 		
+	}
+	
+	public boolean checkEnergiaSuficiente(Guerrero guerrero, int energiaAGastar) {
+		if ((guerrero.getAtributos().getEnergia() - energiaAGastar) < 0) {
+			return false;
+		}else {
+			guerrero.getAtributos().setEnergia(guerrero.getAtributos().getEnergia()- energiaAGastar);
+			return true;
+		}
+	}
+	
+	public void descansar() {
+		humano.getAtributos().setEnergia(humano.getAtributos().getEnergia() + 4);
+		vista.mostrarMensajeEnConsola( " " + humano.getAtributos().getNombre() + " descansa y recupera 4 puntos de energia" );
+		vista.print(entidades);
 	}
 	
 }

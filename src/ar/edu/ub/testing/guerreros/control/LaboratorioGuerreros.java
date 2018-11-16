@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 import ar.edu.ub.testing.guerreros.vista.Consola;
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
+import ar.edu.ub.testing.guerreros.vista.VistaTiendaYEvolucion;
 import ar.edu.ub.testing.guerros.modelo.Cruzador;
+import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 import ar.edu.ub.testing.guerros.modelo.GuerreroJugador;
@@ -15,12 +17,15 @@ public class LaboratorioGuerreros {
 	static Random  rand = new Random();
 	static Scanner scan = new Scanner(System.in);
 	
-	public static GuerreroJugador nuevoJugador() {
+	public static GuerreroJugador nuevoJugador(EntidadesJuego entidades) {
 		
 		GuerreroJugador jugador = new GuerreroJugador();
-		System.out.println("Ingresar nombre: ");       //CREA UN NUEVO JUGADOR 
+		UtilidadesConsola.limpiarConsola();
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("X         Ingresar Nombre           X");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		jugador.getAtributos().setNombre( Consola.pedirNombre() );
-		mutarGuerreroManual(jugador.getPuntos(), jugador);
+		new VistaTiendaYEvolucion(jugador,entidades);
 		return jugador;
 	}
 	
@@ -32,7 +37,7 @@ public class LaboratorioGuerreros {
 			enemigos[i] = guerrero;
 		}
 	}	
-	public static void mutarGuerreroManual(int puntos, Guerrero guerrero){
+	public static void mutarGuerreroManual(int puntos, Guerrero guerrero, EntidadesJuego entidades){
 		while (puntos > 0) {
 			
 			
@@ -44,9 +49,15 @@ public class LaboratorioGuerreros {
 			System.out.println("3) Presicion ->\t"  + guerrero.getAtributos().getPresicion());
 			System.out.println("4) Vida ->\t"       + guerrero.getAtributos().getVida());
 			System.out.println("5) Energia ->\t"    + guerrero.getAtributos().getEnergia());
+			System.out.println("----------------------------");
+			System.out.println("6) Regresar");
 			System.out.println("Seleccionar campo a asignar");
 			
-			int eleccion = Consola.pedirNumero(1, 5);
+			int eleccion = Consola.pedirNumero(1, 6);
+			
+			if(eleccion == 6) {
+				new VistaTiendaYEvolucion((GuerreroJugador) guerrero,entidades);
+			}
 			
 			Mutador.values()[eleccion - 1 ].asignarPunto(guerrero);  //SE ASIGNA MANUALMENTE EL TIPO DE MUTACION DESDE EL ENUM MUTADOR
 			puntos--;

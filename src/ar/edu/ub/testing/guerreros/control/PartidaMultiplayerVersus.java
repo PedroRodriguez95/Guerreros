@@ -37,6 +37,7 @@ public class PartidaMultiplayerVersus extends Partida {
 
 	@Override
 	public void victoriaJugadorUno() {
+		desactivarPasivos();
 		vista.mostrarMensajeEnConsola(" Ganador: " + this.getEntidades().getJugador().getAtributos().getNombre());
 		print();
 		wait(5);
@@ -45,6 +46,7 @@ public class PartidaMultiplayerVersus extends Partida {
 
 	@Override
 	public void victoriaJugadorDos() {
+		desactivarPasivos();
 		vista.mostrarMensajeEnConsola(" Ganador: " + this.getEntidades().getJugador2().getAtributos().getNombre());
 		print();
 		wait(5);
@@ -58,6 +60,9 @@ public class PartidaMultiplayerVersus extends Partida {
 
 	@Override
 	public void Jugar() {
+		activarPasivos();
+		entidades.getJugador().getAtributos().setEnergiaMax(entidades.getJugador().getAtributos().getEnergia());
+		entidades.getJugador2().getAtributos().setEnergiaMax(entidades.getJugador2().getAtributos().getEnergia());
 		turnoJugador();
 	}
 

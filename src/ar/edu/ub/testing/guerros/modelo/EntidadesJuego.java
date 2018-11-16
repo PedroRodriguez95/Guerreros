@@ -13,7 +13,7 @@ public class EntidadesJuego {
 	private GuerreroJugador   jugador1;
 	private GuerreroJugador   jugador2;
 	private Stack<GuerreroEnemigo>           enemigosACruzar;
-	
+
 	public EntidadesJuego() {
 		this.round = 1;
 		this.enemigosACruzar = new Stack<>();
@@ -113,11 +113,4 @@ public class EntidadesJuego {
 			g.getAtributos().resetVida();
 		}
 	}
-	/*
-	public void secretBonus() {
-		
-		for (GuerreroEnemigo g : this.getGuerrerosEnemigos()) {
-			g.getAtributos().setAtaque(g.getAtributos().getAtaque() + 1);
-		}
-	}*/
 }

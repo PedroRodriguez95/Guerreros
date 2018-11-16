@@ -1,6 +1,5 @@
 package ar.edu.ub.testing.guerreros.control;
 
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
@@ -8,7 +7,6 @@ import ar.edu.ub.testing.guerreros.vista.VistaCombateSingleplayer;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
-import ar.edu.ub.testing.guerros.modelo.GuerreroJugador;
 
 public class PartidaSingleplayer extends Partida{
 	
@@ -38,6 +36,7 @@ public class PartidaSingleplayer extends Partida{
 
 	@Override
 	public void victoriaJugadorUno() {
+		desactivarPasivos();
 		vista.mostrarMensajeEnConsola(" Ganador: " + this.getEntidades().getJugador().getAtributos().getNombre());
 		vista.mostrarMensajeEnConsola(" Comenzando nivel: " + (this.getEntidades().getRound() + 1));
 		print();
@@ -63,6 +62,11 @@ public class PartidaSingleplayer extends Partida{
 	}
 	@Override
 	public void Jugar() {
+		activarPasivos();
+		entidades.getJugador().getAtributos().setEnergiaMax(entidades.getJugador().getAtributos().getEnergia());
+		for (GuerreroEnemigo g : entidades.getGuerrerosEnemigos()) {
+			g.getAtributos().setEnergiaMax(g.getAtributos().getEnergia());
+		}
 		turnoJugador();
 		}
 
@@ -96,7 +100,11 @@ public class PartidaSingleplayer extends Partida{
 			turno = 0;
 		}
 		int siguienteTurno = turno;
-			while (entidades.getGuerrerosEnemigos()[siguienteTurno].murio()) {
+			while (entidades.getGuerrerosEnemigos()[siguienteTurno].checkEnemigoNoDisponible()) {
+				
+				if(entidades.getGuerrerosEnemigos()[siguienteTurno].checkNocked()) {
+					vista.mostrarMensajeEnConsola(" " + entidades.getGuerrerosEnemigos()[siguienteTurno].getAtributos().getNombre() + " se encuentra incapacitado por " + entidades.getGuerrerosEnemigos()[siguienteTurno].getContTurnosPausados() + " turnos ");
+				}
 				
 				if (siguienteTurno == 3) {
 					siguienteTurno = 0;

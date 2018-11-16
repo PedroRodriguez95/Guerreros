@@ -11,7 +11,7 @@ public class Bomba1 extends ItemActivo{
 		this.setEnergiaNecesaria(5);
 		this.setNombre("Bomba" + "(" + this.getEnergiaNecesaria() +  ")");
 		this.setDescripcion("Reduce el ataque en -5 pero ataca a 2 enemigos");
-		this.setPrecio(15);
+		this.setPrecio(10);
 		this.jugador = jugador;
 	}
 	
