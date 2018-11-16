@@ -2,19 +2,18 @@ package ar.edu.ub.testing.guerros.modelo.habilidad;
 
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 
-public class Habilidad25PorcDobleDaño extends HabilidadPasiva{
+public class Habilidad25PorcDobleDanio extends HabilidadPasiva{
 
 	
 	
-	public Habilidad25PorcDobleDaño(IHabilidad habilidad) {
-		super(habilidad);
+	public Habilidad25PorcDobleDanio() {
+		super();
 
 	}
 
 	@Override
 	public void ejecutar(Guerrero jugador, Guerrero enemigo) {
-		
-		
+		jugador.atacar(enemigo);
 	}
 
 	@Override
