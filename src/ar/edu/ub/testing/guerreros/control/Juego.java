@@ -11,6 +11,8 @@ import ar.edu.ub.testing.guerreros.vista.MenuConsola;
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
+import ar.edu.ub.testing.guerros.modelo.habilidad.IHabilidadActiva;
+import ar.edu.ub.testing.guerros.modelo.habilidad.IHabilidadPasiva;
 
 public class Juego {
 	
@@ -18,6 +20,8 @@ public class Juego {
 	private EntidadesJuego entidades;
 	private Partida partida;
 	private Map<Integer,Modo_Juego> modoJuego;
+	private Map<Integer,IHabilidadActiva> habildadesActivas;
+	private Map<Integer,IHabilidadPasiva> habildadesPasivas;
 	
 
 	public Juego() {
@@ -139,6 +143,26 @@ public class Juego {
 
 	public void setModoJuego(Map<Integer,Modo_Juego> modoJuego) {
 		this.modoJuego = modoJuego;
+	}
+
+
+	public Map<Integer,IHabilidadActiva> getHabildadesActivas() {
+		return habildadesActivas;
+	}
+
+
+	public void setHabildadesActivas(Map<Integer,IHabilidadActiva> habildadesActivas) {
+		this.habildadesActivas = habildadesActivas;
+	}
+
+
+	public Map<Integer,IHabilidadPasiva> getHabildadesPasivas() {
+		return habildadesPasivas;
+	}
+
+
+	public void setHabildadesPasivas(Map<Integer,IHabilidadPasiva> habildadesPasivas) {
+		this.habildadesPasivas = habildadesPasivas;
 	}
 
 
