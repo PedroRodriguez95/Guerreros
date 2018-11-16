@@ -1,33 +1,33 @@
 package ar.edu.ub.testing.guerros.modelo.habilidad;
 
-import java.util.ArrayList;
-
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
+import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
 
 public class HabilidadEnemigosPierdenTurno extends HabilidadActiva{
 
 	@Override
-	public Integer consumeEstamina() {
-		return null;
+	public Integer consumeEnergia() {
+		return 10;
 	}
 
 
 	@Override
 	public String descripcion() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Enemigos pierden un turno !";
 	}
 
 
 	@Override
-	public void ejecutar(Guerrero jugador, Guerrero[] enemigo) {
+	public void ejecutar(Guerrero jugador, GuerreroEnemigo[] enemigos) {
 		
-		
+		for(GuerreroEnemigo enemigo: enemigos) {
+			ejecutar(enemigo);
+		}
+			
 	}
 
-	public void ejecutar(Guerrero jugador, Guerrero enemigo) {
-		// TODO Auto-generated method stub
-		
+	public void ejecutar(GuerreroEnemigo enemigo) {
+		enemigo.nockear(1);
 	}
 
 }
