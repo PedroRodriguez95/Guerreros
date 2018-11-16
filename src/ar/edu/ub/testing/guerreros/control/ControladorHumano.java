@@ -1,11 +1,14 @@
 package ar.edu.ub.testing.guerreros.control;
 
+import java.util.ArrayList;
+
 import ar.edu.ub.testing.guerreros.vista.Consola;
 import ar.edu.ub.testing.guerreros.vista.OpcionesHumano;
 import ar.edu.ub.testing.guerreros.vista.Vista;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
+import ar.edu.ub.testing.guerros.modelo.items.ItemActivo;
 
 public class ControladorHumano {
 	
@@ -35,6 +38,7 @@ public class ControladorHumano {
 		case 3:
 			break;
 		case 4:
+			vista.print(entidades);
 			break;
 		case 5:
 			break;
@@ -47,6 +51,10 @@ public class ControladorHumano {
 		opciones.printPanelAtacar();
 		int eleccion = Consola.pedirNumero(1, enemigos.length);
 		atacar(jugador, enemigos[eleccion - 1]);
+	}
+	
+	public void menuUsaritems(Guerrero jugador, EntidadesJuego entidades) {
+		ArrayList<ItemActivo> items = new ArrayList<>();
 	}
 	
 	public void atacar(Guerrero atacante, Guerrero atacado){

@@ -27,6 +27,7 @@ public class Bomba1 extends ItemActivo{
 		this.setAtributoOriginal(jugador.getAtributos().getAtaque());
 		this.jugador.getAtributos().setAtaque(jugador.getAtributos().getAtaque() - 5);
 		this.jugador.atacar(entidades.getGuerrerosEnemigos()[objetivo]);
+		atacarEnemigosCercanos(entidades,objetivo);
 		return " " + jugador.getAtributos().getNombre() + " lanza una bomba";
 	}
 	

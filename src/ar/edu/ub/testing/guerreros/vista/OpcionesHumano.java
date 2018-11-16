@@ -1,6 +1,10 @@
 package ar.edu.ub.testing.guerreros.vista;
 
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
 import ar.edu.ub.testing.guerros.modelo.Guerrero;
+import ar.edu.ub.testing.guerros.modelo.items.ItemActivo;
 
 public class OpcionesHumano {
 	
@@ -31,6 +35,34 @@ public class OpcionesHumano {
 		printCabezera(humano);
 		System.out.println("X  Seleccione objetivo                                         X");
 		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+	}
+	
+	public void printPanelItems() {
+		ArrayList<ItemActivo> itemsActivos = humano.getItemsActivos();
+		if(itemsActivos.isEmpty()) {
+			System.out.println("X  No se tienen items activos                                  X");
+			System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+			wait(3);
+		}else {
+			String items = "X ";
+			for (int i = 1; i <= itemsActivos.size();i++) {
+				items += i + ")" + itemsActivos.get(i).getNombre() + " ";
+			}
+			int cantidadEspacios = 64 - items.length();
+			for (int i = 0; i < cantidadEspacios-2; i++) {
+				items += " ";
+			}
+			items += " X";
+			System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		}
+	}
+	
+	public void wait(int segundos) {
+		try {
+			TimeUnit.SECONDS.sleep(segundos);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

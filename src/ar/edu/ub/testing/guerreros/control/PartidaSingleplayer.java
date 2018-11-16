@@ -120,41 +120,6 @@ public class PartidaSingleplayer extends Partida{
 		
 	}
 	
-	/*
-	public void controladorHumano() {
-		Scanner scan = new Scanner(System.in);
-		int eleccion = scan.nextInt();
-		while( esEleccionValida(eleccion) ) {
-			eleccion = scan.nextInt();
-		}
-		switch(eleccion) {
-		case 1:
-			humanoAtaca(entidades);	
-			break;
-		case 2:
-			 break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			verAtributos();
-			break;
-		}
-	}
-
-	private boolean esEleccionValida(int eleccion) {
-		return !(1<= eleccion && eleccion <= 5);
-	}
-
-	public void humanoAtaca(EntidadesJuego entidades) {
-		Scanner scan = new Scanner(System.in);
-		int eleccion = scan.nextInt();
-		while(!(1<= eleccion && eleccion <= entidades.getGuerrerosEnemigos().length)) {
-			eleccion = scan.nextInt();
-		}
-		atacar(entidades.getJugador(),entidades.getGuerrerosEnemigos()[eleccion-1]);
-	}*/
 
 	@Override
 	public void terminarPartida() {

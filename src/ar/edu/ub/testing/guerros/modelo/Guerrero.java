@@ -103,5 +103,17 @@ public abstract class Guerrero {
 			i.ejecutarAccionPasiva();
 		}
 	}
+	
+	public ArrayList<ItemActivo> getItemsActivos(){
+		
+		ArrayList<ItemActivo> itemsActivos = new ArrayList<>();
+		if (!(this.items[0] == null) && ItemActivo.class.isAssignableFrom(this.items[0].getClass())) {
+			itemsActivos.add((ItemActivo)items[0]);
+		}
+		if (!(this.items[1] == null) && ItemActivo.class.isAssignableFrom(this.items[1].getClass())) {
+			itemsActivos.add((ItemActivo)items[1]);
+		}
+		return itemsActivos;
+	}
 }
 
