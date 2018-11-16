@@ -55,7 +55,7 @@ public class PartidaSingleplayer extends Partida{
 
 	@Override
 	public void victoriaEnemigos() {
-		vista.mostrarMensajeEnConsola("Jugador derrotado por generacion #" + this.getEntidades().getRound());
+		vista.mostrarMensajeEnConsola(" Jugador derrotado por generacion #" + this.getEntidades().getRound());
 		print();
 		wait(5);
 		new Juego();
@@ -68,8 +68,8 @@ public class PartidaSingleplayer extends Partida{
 
 	@Override
 	public void turnoJugador() {
-		print();
 		checkearCondicionesDeVictoria();
+		print();
 		controladorHumano();
 		if(!checkearCondicionesDeVictoria()) {
 			turnoEnemigo();

@@ -24,7 +24,7 @@ public class PartidaMultiplayerCoop extends Partida {
 
 	@Override
 	public boolean checkearCondicionesDeVictoria() {
-		if (this.entidades.checkJugadorUnoMuerto() && this.entidades.checkJugadorDosMuerto()) {
+		if ((this.entidades.checkJugadorUnoMuerto()) && (this.entidades.checkJugadorDosMuerto())) {
 			this.victoriaEnemigos();
 			return true;
 		}
@@ -36,7 +36,7 @@ public class PartidaMultiplayerCoop extends Partida {
 	}
 	
 	public void victoriaJugadores() {
-		vista.mostrarMensajeEnConsola("Ganadores: " + this.getEntidades().getJugador().getAtributos().getNombre() + " " + this.getEntidades().getJugador2().getAtributos().getNombre());
+		vista.mostrarMensajeEnConsola(" Ganadores: " + this.getEntidades().getJugador().getAtributos().getNombre() + " " + this.getEntidades().getJugador2().getAtributos().getNombre());
 		vista.mostrarMensajeEnConsola(" Comenzando nivel: " + (this.getEntidades().getRound() + 1));
 		print();
 		wait(5);
@@ -57,7 +57,7 @@ public class PartidaMultiplayerCoop extends Partida {
 
 	@Override
 	public void victoriaEnemigos() {
-		vista.mostrarMensajeEnConsola("Jugadores derrotados por generacion #" + this.getEntidades().getRound());
+		vista.mostrarMensajeEnConsola(" Jugadores derrotados por generacion #" + this.getEntidades().getRound());
 		print();
 		wait(5);
 		new Juego();
@@ -70,13 +70,23 @@ public class PartidaMultiplayerCoop extends Partida {
 
 	@Override
 	public void turnoJugador() {
-		print();
+		
 		checkearCondicionesDeVictoria();
+		print();
 		if(this.turnoJugador == 1) {
-			controladorHumano(this.getEntidades().getJugador());
+			if(this.getEntidades().getJugador().murio()) {
+				turnoJugador++;
+			}else {
+				controladorHumano(this.getEntidades().getJugador());
+			}
 		}
 		if (this.turnoJugador == 2) {
-			controladorHumano(this.getEntidades().getJugador2());
+			if(this.getEntidades().getJugador2().murio()) {
+				turnoJugador = 1;
+				turnoJugador();
+			}else {
+				controladorHumano(this.getEntidades().getJugador2());
+			}
 		}
 		this.turnoJugador++;
 		if(this.turnoJugador > 2) {
