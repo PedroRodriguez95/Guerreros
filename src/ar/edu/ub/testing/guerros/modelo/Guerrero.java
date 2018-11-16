@@ -1,10 +1,12 @@
 package ar.edu.ub.testing.guerros.modelo;
 
+
 import java.util.ArrayList;
 
 import ar.edu.ub.testing.guerros.modelo.items.Item;
 import ar.edu.ub.testing.guerros.modelo.items.ItemActivo;
 import ar.edu.ub.testing.guerros.modelo.items.ItemPasivo;
+
 
 public abstract class Guerrero {
 	
