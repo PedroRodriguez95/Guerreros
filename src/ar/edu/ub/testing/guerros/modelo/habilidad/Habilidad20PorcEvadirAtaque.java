@@ -18,7 +18,7 @@ public class Habilidad20PorcEvadirAtaque extends HabilidadPasiva{
 	
 	@Override
 	public boolean probar() {
-		return probar(5);
+		return probar(5,1);
 	}
 	public Habilidad20PorcEvadirAtaque() {
 		super();

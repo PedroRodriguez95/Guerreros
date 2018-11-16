@@ -24,7 +24,7 @@ public class Habilidad25PorcDobleDanio extends HabilidadPasiva{
 
 	@Override
 	public boolean probar() {
-		return probar(4);
+		return probar(4,1);
 	}
 
 }

@@ -12,8 +12,8 @@ public abstract class HabilidadPasiva implements IHabilidadPasiva{
 		this.setRand(new Random());
 	}
 	
-	public boolean probar(Integer max ) {
-		return 1==getRand().nextInt((max - 1) + 1);
+	public boolean probar(Integer max , Integer numEsperado) {
+		return numEsperado == getRand().nextInt((max - 1) + 1);
 	}
  
 
