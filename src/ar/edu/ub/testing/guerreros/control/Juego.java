@@ -11,6 +11,13 @@ import ar.edu.ub.testing.guerreros.vista.MenuConsola;
 import ar.edu.ub.testing.guerreros.vista.UtilidadesConsola;
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 import ar.edu.ub.testing.guerros.modelo.GuerreroEnemigo;
+import ar.edu.ub.testing.guerros.modelo.habilidad.Habilidad15PorcParalizarDosTurnos;
+import ar.edu.ub.testing.guerros.modelo.habilidad.Habilidad20PorcEvadirAtaque;
+import ar.edu.ub.testing.guerros.modelo.habilidad.Habilidad25PorcDobleDanio;
+import ar.edu.ub.testing.guerros.modelo.habilidad.HabilidadDaniarEnemigoCincoTurnos;
+import ar.edu.ub.testing.guerros.modelo.habilidad.HabilidadDaniarEnemigos;
+import ar.edu.ub.testing.guerros.modelo.habilidad.HabilidadEnemigoFallaAtaque;
+import ar.edu.ub.testing.guerros.modelo.habilidad.HabilidadEnemigosPierdenTurno;
 import ar.edu.ub.testing.guerros.modelo.habilidad.IHabilidadActiva;
 import ar.edu.ub.testing.guerros.modelo.habilidad.IHabilidadPasiva;
 
@@ -33,10 +40,31 @@ public class Juego {
 		
 		crearModos();
 		
+		setHabildadesActivas(new HashMap<>());
+		
+		setHabildadesPasivas(new HashMap<>());
+			
+		crearHabilidades();
+		
 		menuPrincipal();
+		
 	}
 	
 	
+	private void crearHabilidades() {
+		//Se indican las habilidades activas que puede elegir el usuario
+		getHabildadesActivas().put(1, new HabilidadEnemigosPierdenTurno());
+		getHabildadesActivas().put(2, new HabilidadEnemigoFallaAtaque());
+		getHabildadesActivas().put(3, new HabilidadDaniarEnemigos());
+		getHabildadesActivas().put(4, new HabilidadDaniarEnemigoCincoTurnos());
+		
+		//Se indican las habilidades pasivas que puede elegir el usuario
+		getHabildadesPasivas().put(5, new Habilidad25PorcDobleDanio());
+		getHabildadesPasivas().put(6, new Habilidad20PorcEvadirAtaque());
+		getHabildadesPasivas().put(7, new Habilidad15PorcParalizarDosTurnos());
+	}
+
+
 	private void crearModos() {
 		getModoJuego().put(Modo_Juego.UN_JUGADOR.key(), Modo_Juego.UN_JUGADOR);
 		getModoJuego().put(Modo_Juego.MULTI_COOP.key(), Modo_Juego.MULTI_COOP);
