@@ -2,7 +2,7 @@ package ar.edu.ub.testing.guerreros.vista;
 
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 
-public class VistaCombateSingleplayer{
+public class VistaCombateSingleplayer extends Vista{
 	
 	private CombateSingleplayer combate;
 	private ConsolaJuego consola;

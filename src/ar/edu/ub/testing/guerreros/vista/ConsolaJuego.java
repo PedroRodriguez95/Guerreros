@@ -19,7 +19,6 @@ public class ConsolaJuego implements IVista{
 			System.out.println("");
 		}
 		System.out.println(cabezera);
-		printOpcionesHumano();
 	}
 	
 	public void actualizarConsola(String mensaje) {
@@ -51,12 +50,4 @@ public class ConsolaJuego implements IVista{
 		consola[2][1] = " ";
  		consola[3][1] = " ";
 	}
-	
-	public void printOpcionesHumano() {
-		System.out.println("X  1)Atacar 2)Defender 3)Especial 4)Usar Item 5)Ver Atributos  X");
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-	}
-
-
-
 }

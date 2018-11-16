@@ -2,7 +2,7 @@ package ar.edu.ub.testing.guerreros.vista;
 
 import ar.edu.ub.testing.guerros.modelo.EntidadesJuego;
 
-public class VistaCombateMultiplayerCoop {
+public class VistaCombateMultiplayerCoop extends Vista{
 	
 	private CombateMultiplayerCoop combate;
 	private ConsolaJuego consola;
@@ -14,6 +14,7 @@ public class VistaCombateMultiplayerCoop {
 		cabezera = new CabezeraMultiplayerCoop(entidades);
 	}
 	
+	@Override
 	public void mostrarMensajeEnConsola(String mensaje) {
 		consola.actualizarConsola(mensaje);
 	}
@@ -22,6 +23,7 @@ public class VistaCombateMultiplayerCoop {
 		consola.limpiarConsola();
 	}
 	
+	@Override
 	public void print(EntidadesJuego entidades) {
 		UtilidadesConsola.limpiarConsola();
 		actualizarEntidades(entidades);
@@ -35,5 +37,6 @@ public class VistaCombateMultiplayerCoop {
 	combate = new CombateMultiplayerCoop(entidades);
 	cabezera = new CabezeraMultiplayerCoop(entidades);
 	}
+
 
 }

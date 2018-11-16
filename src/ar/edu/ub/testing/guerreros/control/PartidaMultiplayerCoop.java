@@ -120,7 +120,7 @@ public class PartidaMultiplayerCoop extends Partida {
 	}
 	
 	private int buscarSiguienteEnemigoNoMuerto(int turno) {
-		if (turno >= 7) {
+		if (turno > 7) {
 			turno = 0;
 		}
 		int siguienteTurno = turno;

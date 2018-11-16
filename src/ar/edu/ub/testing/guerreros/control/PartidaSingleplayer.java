@@ -70,7 +70,7 @@ public class PartidaSingleplayer extends Partida{
 	public void turnoJugador() {
 		checkearCondicionesDeVictoria();
 		print();
-		controladorHumano();
+		new ControladorHumano(entidades.getJugador(), entidades, vista);
 		if(!checkearCondicionesDeVictoria()) {
 			turnoEnemigo();
 		}
@@ -92,7 +92,7 @@ public class PartidaSingleplayer extends Partida{
 	}
 	
 	private int buscarSiguienteEnemigoNoMuerto(int turno) {
-		if (turno >= 3) {
+		if (turno > 3) {
 			turno = 0;
 		}
 		int siguienteTurno = turno;
@@ -120,6 +120,7 @@ public class PartidaSingleplayer extends Partida{
 		
 	}
 	
+	/*
 	public void controladorHumano() {
 		Scanner scan = new Scanner(System.in);
 		int eleccion = scan.nextInt();
@@ -141,7 +142,7 @@ public class PartidaSingleplayer extends Partida{
 			break;
 		}
 	}
-	
+
 	private boolean esEleccionValida(int eleccion) {
 		return !(1<= eleccion && eleccion <= 5);
 	}
@@ -153,7 +154,7 @@ public class PartidaSingleplayer extends Partida{
 			eleccion = scan.nextInt();
 		}
 		atacar(entidades.getJugador(),entidades.getGuerrerosEnemigos()[eleccion-1]);
-	}
+	}*/
 
 	@Override
 	public void terminarPartida() {
